@@ -1,4 +1,4 @@
-# first_app
+# Premiers pas GIT
 
 credential
 
