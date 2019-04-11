@@ -1,3 +1,4 @@
+#!/bin/bash
 
 echo "delete instances"
 gcloud compute instances delete vpn-1-a --zone=us-west1-a
