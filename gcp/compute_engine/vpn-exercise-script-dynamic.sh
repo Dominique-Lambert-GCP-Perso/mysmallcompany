@@ -1,10 +1,10 @@
 #!/bin/bash
 
 echo "Création des réseaux et sous réseaux avec autorisation du port tcp22"
-gcloud compute networks create vpn-network-1 --bgp-routing-mode=global --subnet-mode=custom
+gcloud compute networks create vpn-network-1 --bgp-routing-mode=global --subnet-mode=auto
 gcloud compute networks subnets create subnet-a --network=vpn-network-1 --region=us-west1 --range=10.1.1.0/24
 gcloud compute firewall-rules create icmp-tcp22-allow-1 --direction=INGRESS --priority=1000 --network=vpn-network-1 --action=ALLOW --rules=tcp:22,icmp --source-ranges=0.0.0.0/0
-gcloud compute networks create vpn-network-2 --bgp-routing-mode=global --subnet-mode=custom
+gcloud compute networks create vpn-network-2 --bgp-routing-mode=global --subnet-mode=auto
 gcloud compute networks subnets create subnet-b --network=vpn-network-2 --region=us-central1 --range=10.1.2.0/24
 gcloud compute networks subnets create subnet-c --network=vpn-network-2 --region=us-east1 --range=10.1.3.0/24
 gcloud compute firewall-rules create icmp-tcp22-allow-2 --direction=INGRESS --priority=1000 --network=vpn-network-2 --action=ALLOW --rules=tcp:22,icmp --source-ranges=0.0.0.0/0
@@ -19,7 +19,6 @@ gcloud compute addresses create vpn-static-1 --region=us-west1
 gcloud compute addresses create vpn-static-2 --region=us-central1
 
 echo "Création des routeur pour chaque vpn"
-
 gcloud compute --project=msc-network-tests routers create vpn-router-1 --asn=65000 --network=vpn-network-1 --region=us-west1
 gcloud compute --project=msc-network-tests routers create vpn-router-2 --asn=65001 --network=vpn-network-2 --region=us-central1
 
@@ -29,7 +28,7 @@ gcloud compute --project "msc-network-tests" target-vpn-gateways create "vpn-gat
 gcloud compute --project "msc-network-tests" forwarding-rules create "vpn-gateway-1-rule-esp" --region "us-west1" --address "35.230.109.6" --ip-protocol "ESP" --target-vpn-gateway "vpn-gateway-1"
 gcloud compute --project "msc-network-tests" forwarding-rules create "vpn-gateway-1-rule-udp500" --region "us-west1" --address "35.230.109.6" --ip-protocol "UDP" --ports "500" --target-vpn-gateway "vpn-gateway-1"
 gcloud compute --project "msc-network-tests" forwarding-rules create "vpn-gateway-1-rule-udp4500" --region "us-west1" --address "35.230.109.6" --ip-protocol "UDP" --ports "4500" --target-vpn-gateway "vpn-gateway-1"
-gcloud compute --project "msc-network-tests" vpn-tunnels create "vpn-gateway-1-tunnel-1" --region "us-west1" --peer-address "35.239.160.55" --shared-secret "Password" --ike-version "2" --target-vpn-gateway "vpn-gateway-1"
+gcloud compute --project "msc-network-tests" vpn-tunnels create "vpn-gateway-1-tunnel-1" --region "us-west1" --peer-address "35.239.160.55" --shared-secret "Password" --ike-version "2" --target-vpn-gateway "vpn-gateway-1" 
  
 echo "Création du VPN dans le subnet-b, ajout du tunnel VPN dynamic (BGP)"
 gcloud compute --project "msc-network-tests" target-vpn-gateways create "vpn-gateway-2" --region "us-central1" --network "vpn-network-2"
@@ -37,5 +36,6 @@ gcloud compute --project "msc-network-tests" forwarding-rules create "vpn-gatewa
 gcloud compute --project "msc-network-tests" forwarding-rules create "vpn-gateway-2-rule-udp500" --region "us-central1" --address "35.239.160.55" --ip-protocol "UDP" --ports "500" --target-vpn-gateway "vpn-gateway-2"
 gcloud compute --project "msc-network-tests" forwarding-rules create "vpn-gateway-2-rule-udp4500" --region "us-central1" --address "35.239.160.55" --ip-protocol "UDP" --ports "4500" --target-vpn-gateway "vpn-gateway-2"
 gcloud compute --project "msc-network-tests" vpn-tunnels create "vpn-gateway-2-tunnel-1" --region "us-central1" --peer-address "35.230.109.6" --shared-secret "Password" --ike-version "2" --target-vpn-gateway "vpn-gateway-2"
+
 
 echo "SCRIPT HAS FINISHED RUNNING. PROCEED WITH THE EXERCISE"
