@@ -28,14 +28,17 @@ gcloud compute --project "msc-network-tests" target-vpn-gateways create "vpn-gat
 gcloud compute --project "msc-network-tests" forwarding-rules create "vpn-gateway-1-rule-esp" --region "us-west1" --address "35.230.109.6" --ip-protocol "ESP" --target-vpn-gateway "vpn-gateway-1"
 gcloud compute --project "msc-network-tests" forwarding-rules create "vpn-gateway-1-rule-udp500" --region "us-west1" --address "35.230.109.6" --ip-protocol "UDP" --ports "500" --target-vpn-gateway "vpn-gateway-1"
 gcloud compute --project "msc-network-tests" forwarding-rules create "vpn-gateway-1-rule-udp4500" --region "us-west1" --address "35.230.109.6" --ip-protocol "UDP" --ports "4500" --target-vpn-gateway "vpn-gateway-1"
-gcloud compute --project "msc-network-tests" vpn-tunnels create "vpn-gateway-1-tunnel-1" --region "us-west1" --peer-address "35.239.160.55" --shared-secret "Password" --ike-version "2" --target-vpn-gateway "vpn-gateway-1" 
- 
+gcloud compute --project "msc-network-tests" vpn-tunnels create "vpn-gateway-1-tunnel-1" --region "us-west1" --peer-address "35.239.160.55" --shared-secret "Password" --ike-version "2" --target-vpn-gateway "vpn-gateway-1" --router "vpn-router-1"
+
 echo "Création du VPN dans le subnet-b, ajout du tunnel VPN dynamic (BGP)"
 gcloud compute --project "msc-network-tests" target-vpn-gateways create "vpn-gateway-2" --region "us-central1" --network "vpn-network-2"
 gcloud compute --project "msc-network-tests" forwarding-rules create "vpn-gateway-2-rule-esp" --region "us-central1" --address "35.239.160.55" --ip-protocol "ESP" --target-vpn-gateway "vpn-gateway-2"
 gcloud compute --project "msc-network-tests" forwarding-rules create "vpn-gateway-2-rule-udp500" --region "us-central1" --address "35.239.160.55" --ip-protocol "UDP" --ports "500" --target-vpn-gateway "vpn-gateway-2"
 gcloud compute --project "msc-network-tests" forwarding-rules create "vpn-gateway-2-rule-udp4500" --region "us-central1" --address "35.239.160.55" --ip-protocol "UDP" --ports "4500" --target-vpn-gateway "vpn-gateway-2"
-gcloud compute --project "msc-network-tests" vpn-tunnels create "vpn-gateway-2-tunnel-1" --region "us-central1" --peer-address "35.230.109.6" --shared-secret "Password" --ike-version "2" --target-vpn-gateway "vpn-gateway-2"
+gcloud compute --project "msc-network-tests" vpn-tunnels create "vpn-gateway-2-tunnel-1" --region "us-central1" --peer-address "35.230.109.6" --shared-secret "Password" --ike-version "2" --target-vpn-gateway "vpn-gateway-2" --router "vpn-router-2"
 
+echo "Configurez une session BGP pour les routeur Cloud"
+gcloud compute --project "msc-network-tests" routers add-interface "vpn-router-1" --interface-name "bgp-1" --vpn-tunnel "vpn-gateway-1-tunnel-1" --ip-address "169.254.0.1" --mask-length 30 --region "us-west1" 
+gcloud compute --project "msc-network-tests" routers add-bgp-peer "vpn-router-2" --interface "bgp-2" --peer-name "vpn-gateway-2-tunnel-2" --peer-asn "65000"  --peer-ip-address "169.254.0.1" --region "us-central1"
 
 echo "SCRIPT HAS FINISHED RUNNING. PROCEED WITH THE EXERCISE"
