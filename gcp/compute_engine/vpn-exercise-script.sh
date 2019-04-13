@@ -27,7 +27,7 @@ gcloud compute --project "msc-network-tests" vpn-tunnels create "vpn-gateway-1-t
 gcloud compute --project "msc-network-tests" routes create "vpn-gateway-1-tunnel-1-route-1" --network "vpn-network-1" --next-hop-vpn-tunnel "vpn-gateway-1-tunnel-1" --next-hop-vpn-tunnel-region "us-west1" --destination-range "10.1.2.0/24"
 gcloud compute --project "msc-network-tests" routes create "vpn-gateway-1-tunnel-1-route-2" --network "vpn-network-1" --next-hop-vpn-tunnel "vpn-gateway-1-tunnel-1" --next-hop-vpn-tunnel-region "us-west1" --destination-range "10.1.3.0/24"
  
-echo "Création du VPN dans le subnet-b, ajout du tunnel VPN et d'une route vers les ranges IP de subnet subnet-a"
+echo "Création du VPN dans le subnet-b, ajout du tunnel VPN et d une route vers les ranges IP de subnet subnet-a"
 gcloud compute --project "msc-network-tests" target-vpn-gateways create "vpn-gateway-2" --region "us-central1" --network "vpn-network-2"
 gcloud compute --project "msc-network-tests" forwarding-rules create "vpn-gateway-2-rule-esp" --region "us-central1" --address "35.239.160.55" --ip-protocol "ESP" --target-vpn-gateway "vpn-gateway-2"
 gcloud compute --project "msc-network-tests" forwarding-rules create "vpn-gateway-2-rule-udp500" --region "us-central1" --address "35.239.160.55" --ip-protocol "UDP" --ports "500" --target-vpn-gateway "vpn-gateway-2"

@@ -39,6 +39,10 @@ gcloud compute --project "msc-network-tests" vpn-tunnels create "vpn-gateway-2-t
 
 echo "Configurez une session BGP pour les routeur Cloud"
 gcloud compute --project "msc-network-tests" routers add-interface "vpn-router-1" --interface-name "bgp-1" --vpn-tunnel "vpn-gateway-1-tunnel-1" --ip-address "169.254.0.1" --mask-length 30 --region "us-west1" 
-gcloud compute --project "msc-network-tests" routers add-bgp-peer "vpn-router-2" --interface "bgp-2" --peer-name "vpn-gateway-2-tunnel-2" --peer-asn "65000"  --peer-ip-address "169.254.0.1" --region "us-central1"
+gcloud compute --project "msc-network-tests" routers add-bgp-peer "vpn-router-1" --interface "bgp-1" --peer-name "bgp-2" --peer-asn "65001"  --peer-ip-address "169.254.0.2" --region "us-west1"
+
+gcloud compute --project "msc-network-tests" routers add-interface "vpn-router-2" --interface-name "bgp-2" --vpn-tunnel "vpn-gateway-2-tunnel-1" --ip-address "169.254.0.2" --mask-length 30 --region "us-central1" 
+gcloud compute --project "msc-network-tests" routers add-bgp-peer "vpn-router-2" --interface "bgp-2" --peer-name "bgp-1" --peer-asn "65000"  --peer-ip-address "169.254.0.1" --region "us-central1"
+
 
 echo "SCRIPT HAS FINISHED RUNNING. PROCEED WITH THE EXERCISE"
