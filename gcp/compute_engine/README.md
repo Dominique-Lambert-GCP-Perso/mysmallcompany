@@ -15,5 +15,17 @@ dominique_lambert_mysmallcompany@vpn-1-a:/tmp$ gcloud compute --project "msc-net
 --zone "us-east1-d"
 WARNING: Using OS Login user [sa_112814495510025623904] instead of default user [dominique_lambert_mysmallcompany]
 e.txt                                                                            100%    2     0.0KB/s   00:00    
-
 ```
+## VPN avec routage dynamique (BGP)
+Script : [vpn-exercise-script-dynamic.sh](/gcp/compute_engine/vpn-exercise-script-dynamic.sh)
+
+Les instructions "code gcloud" indiquée via la console sont parfois incomplète. Pour créer un VPN avec routage dynamique, les instructions n'indiquent pas qu'il faille créer les objets de type interface ([voir l'aide](https://cloud.google.com/vpn/docs/how-to/creating-vpn-dynamic-routes)).
+J'ai dû passer en "--subnet-mode=auto" lors de la crération des réseaux, par certain que cela soit nécessaire.
+
+```bash
+gcloud compute --project "msc-network-tests" routers add-interface "vpn-router-1" --interface-name "bgp-1" --vpn-tunnel "vpn-gateway-1-tunnel-1" --ip-address "169.254.0.1" --mask-length 30 --region "us-west1" 
+gcloud compute --project "msc-network-tests" routers add-bgp-peer "vpn-router-1" --interface "bgp-1" --peer-name "bgp-2" --peer-asn "65001"  --peer-ip-address "169.254.0.2" --region "us-west1"
+```
+## Nétoyage
+Script : [clean.sh](/gcp/compute_engine/clean.sh)
+Supprime toutes les ressources sauf les IP statics (qui coûtent si elles ne sont pas utilisés)
