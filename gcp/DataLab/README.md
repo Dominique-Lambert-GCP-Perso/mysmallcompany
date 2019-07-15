@@ -31,5 +31,23 @@ gcloud compute --project test-datalab-246315 --verbosity=error --quiet disks des
 
 Run
 ```Shell
-gcloud compute --project test-datalab-246315 --verbosity=error instances create --zone europe-west1-b --format=none --boot-disk-size=20GB --network datalab-network --image-family cos-stable --image-project cos-cloud --machine-type n1-standard-1 --metadata-from-file startup-script=c:\\users\\utilis~1\\Documents\\mysmallcompany\\gcp\\DataLab\\startup-script.py user-data=c:\\users\\utilis~1\\Documents\\mysmallcompany\\gcp\\DataLab\\user-data.cloud-config.txt, for-user=c:\\users\\utilis~1\\Documents\\mysmallcompany\\gcp\\DataLab\\for-user.txt, enable-oslogin=c:\\users\\utilis~1\\Documents\\mysmallcompany\\gcp\\DataLab\\enable-oslogin.txt created-with-sdk-version=c:\\users\\utilis~1\\Documents\\mysmallcompany\\gcp\\DataLab\\created-with-sdk-version.txt created-with-datalab-version=c:\\users\\utilis~1\\Documents\\mysmallcompany\\gcp\\DataLab\\created-with-datalab-version.txt --tags datalab --disk auto-delete=no,boot=no,device-name=datalab-pd,mode=rw,name=test-pd --service-account default --scopes cloud-platform test
+gcloud compute --project test-datalab-246315 --verbosity=error 
+  instances create 
+          --zone europe-west1-b 
+          --format=none 
+          --boot-disk-size=20GB 
+          --network datalab-network 
+          --image-family cos-stable 
+          --image-project cos-cloud 
+          --machine-type n1-standard-1 
+          --metadata-from-file startup-script=startup-script.py 
+          --metadata-from-file user-data=user-data.cloud-config.txt 
+          --metadata-from-file for-user=for-user.txt 
+          --metadata-from-file enable-oslogin=enable-oslogin.txt 
+          --metadata-from-file created-with-sdk-version=created-with-sdk-version.txt 
+          --metadata-from-file created-with-datalab-version=created-with-datalab-version.txt 
+          --tags datalab 
+          --disk "auto-delete=no,boot=no,device-name=datalab-pd,mode=rw,name=test-pd" 
+          --service-account default 
+          --scopes cloud-platform test
 ```
