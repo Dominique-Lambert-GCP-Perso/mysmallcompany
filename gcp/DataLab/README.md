@@ -1,19 +1,35 @@
-# DataFlow
+# DataLab
 
-## Apache Beam Sources Quistart-java
-https://beam.apache.org/get-started/quickstart-java/
+## Source
+https://github.com/googledatalab/datalab/tree/master/containers/datalab
 
-Direct-runner : OK
+2 commandes
+- datalab create test
+- datalab connect test
 
-dataflow-runner : ligne de commande légèrement différente de la documentation  (-Pdataflow-runner passé sur mvn)
+## bjectif
+- analyser les commandes GCP et les principes de création et de connection à l'instance datalab
+(projet datalab dans eclipse-workspace)
 
-Projet GCP : msc-network-tests
-Storage : gs://word-count-dla
+## datalab create
+Préparation
 
+Vérification de l'existance du réseau (par défaut nommé datalab-network)
 ```Shell
-mvn -Pdataflow-runner compile exec:java -D exec.mainClass=org.apache.beam.examples.WordCount `
-		-D exec.args="--runner=DataflowRunner --project=msc-network-tests `
-					  --gcpTempLocation=gs://word-count-dla/tmp `
-					  --inputFile=gs://apache-beam-samples/shakespeare/* `
-					  --output=gs://word-count-dla/counts"
+gcloud compute --project test-datalab-246315 --verbosity=error --quiet networks describe --format value(name) datalab-network
+```
+
+Vérification de l'existance des régles de firewall
+```Shell
+gcloud compute --project test-datalab-246315 --verbosity=error firewall-rules list --filter network~.^*datalab-network$ --format value(name)
+```
+
+Vérification de l'existance du disque persistant (test-pd)
+```Shell
+gcloud compute --project test-datalab-246315 --verbosity=error --quiet disks describe test-pd --format value(name) --zone europe-west1-b
+```
+
+Run
+```Shell
+gcloud compute --project test-datalab-246315 --verbosity=error instances create --zone europe-west1-b --format=none --boot-disk-size=20GB --network datalab-network --image-family cos-stable --image-project cos-cloud --machine-type n1-standard-1 --metadata-from-file startup-script=c:\\users\\utilis~1\\Documents\\mysmallcompany\\gcp\\DataLab\\startup-script.py user-data=c:\\users\\utilis~1\\Documents\\mysmallcompany\\gcp\\DataLab\\user-data.cloud-config.txt, for-user=c:\\users\\utilis~1\\Documents\\mysmallcompany\\gcp\\DataLab\\for-user.txt, enable-oslogin=c:\\users\\utilis~1\\Documents\\mysmallcompany\\gcp\\DataLab\\enable-oslogin.txt created-with-sdk-version=c:\\users\\utilis~1\\Documents\\mysmallcompany\\gcp\\DataLab\\created-with-sdk-version.txt created-with-datalab-version=c:\\users\\utilis~1\\Documents\\mysmallcompany\\gcp\\DataLab\\created-with-datalab-version.txt --tags datalab --disk auto-delete=no,boot=no,device-name=datalab-pd,mode=rw,name=test-pd --service-account default --scopes cloud-platform test
 ```
