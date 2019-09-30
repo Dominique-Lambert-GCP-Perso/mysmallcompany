@@ -1,0 +1,181 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachineScaleSets_vmss1_name": {
+            "defaultValue": "vmss1",
+            "type": "String"
+        },
+        "networkSecurityGroups_vmss1nsg_externalid": {
+            "defaultValue": "/subscriptions/be47af0a-4069-416d-97b2-0859f39c089d/resourceGroups/mvssgrp2/providers/Microsoft.Network/networkSecurityGroups/vmss1nsg",
+            "type": "String"
+        },
+        "virtualNetworks_vnet1_externalid": {
+            "defaultValue": "/subscriptions/be47af0a-4069-416d-97b2-0859f39c089d/resourceGroups/mvssgrp2/providers/Microsoft.Network/virtualNetworks/vnet1",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Compute/virtualMachineScaleSets",
+            "apiVersion": "2019-03-01",
+            "name": "[parameters('virtualMachineScaleSets_vmss1_name')]",
+            "location": "francecentral",
+            "sku": {
+                "name": "Standard_B1ls",
+                "tier": "Standard",
+                "capacity": 1
+            },
+            "properties": {
+                "singlePlacementGroup": true,
+                "upgradePolicy": {
+                    "mode": "Manual"
+                },
+                "virtualMachineProfile": {
+                    "osProfile": {
+                        "computerNamePrefix": "[concat(parameters('virtualMachineScaleSets_vmss1_name'), 'uopv')]",
+                        "adminUsername": "dla",
+                        "linuxConfiguration": {
+                            "disablePasswordAuthentication": false,
+                            "provisionVMAgent": true
+                        },
+                        "secrets": []
+                    },
+                    "storageProfile": {
+                        "osDisk": {
+                            "vhdContainers": [
+                                "[concat('https://uopv7ypfl', parameters('virtualMachineScaleSets_vmss1_name'), 'uopvsa0.blob.core.windows.net/', parameters('virtualMachineScaleSets_vmss1_name'), 'uopvvhd')]",
+                                "[concat('https://uopv7ypfl', parameters('virtualMachineScaleSets_vmss1_name'), 'uopvsa1.blob.core.windows.net/', parameters('virtualMachineScaleSets_vmss1_name'), 'uopvvhd')]",
+                                "[concat('https://uopv7ypfl', parameters('virtualMachineScaleSets_vmss1_name'), 'uopvsa2.blob.core.windows.net/', parameters('virtualMachineScaleSets_vmss1_name'), 'uopvvhd')]",
+                                "[concat('https://uopv7ypfl', parameters('virtualMachineScaleSets_vmss1_name'), 'uopvsa3.blob.core.windows.net/', parameters('virtualMachineScaleSets_vmss1_name'), 'uopvvhd')]",
+                                "[concat('https://uopv7ypfl', parameters('virtualMachineScaleSets_vmss1_name'), 'uopvsa4.blob.core.windows.net/', parameters('virtualMachineScaleSets_vmss1_name'), 'uopvvhd')]"
+                            ],
+                            "name": "[concat(parameters('virtualMachineScaleSets_vmss1_name'), 'uopvosdisk')]",
+                            "createOption": "FromImage",
+                            "caching": "ReadWrite"
+                        },
+                        "imageReference": {
+                            "publisher": "OpenLogic",
+                            "offer": "CentOS",
+                            "sku": "7.5",
+                            "version": "latest"
+                        }
+                    },
+                    "networkProfile": {
+                        "networkInterfaceConfigurations": [
+                            {
+                                "name": "[concat(parameters('virtualMachineScaleSets_vmss1_name'), 'Nic')]",
+                                "properties": {
+                                    "primary": true,
+                                    "enableAcceleratedNetworking": false,
+                                    "networkSecurityGroup": {
+                                        "id": "[parameters('networkSecurityGroups_vmss1nsg_externalid')]"
+                                    },
+                                    "dnsSettings": {
+                                        "dnsServers": []
+                                    },
+                                    "enableIPForwarding": false,
+                                    "ipConfigurations": [
+                                        {
+                                            "name": "[concat(parameters('virtualMachineScaleSets_vmss1_name'), 'IpConfig')]",
+                                            "properties": {
+                                                "subnet": {
+                                                    "id": "[concat(parameters('virtualNetworks_vnet1_externalid'), '/subnets/default')]"
+                                                },
+                                                "privateIPAddressVersion": "IPv4"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    "priority": "Regular"
+                },
+                "overprovision": true,
+                "doNotRunExtensionsOnOverprovisionedVMs": false,
+                "platformFaultDomainCount": 5
+            }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachineScaleSets/virtualMachines",
+            "apiVersion": "2019-03-01",
+            "name": "[concat(parameters('virtualMachineScaleSets_vmss1_name'), '/0')]",
+            "location": "francecentral",
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/virtualMachineScaleSets', parameters('virtualMachineScaleSets_vmss1_name'))]"
+            ],
+            "sku": {
+                "name": "Standard_B1ls",
+                "tier": "Standard"
+            },
+            "properties": {
+                "networkProfileConfiguration": {
+                    "networkInterfaceConfigurations": [
+                        {
+                            "name": "vmss1Nic",
+                            "properties": {
+                                "primary": true,
+                                "enableAcceleratedNetworking": false,
+                                "networkSecurityGroup": {
+                                    "id": "[parameters('networkSecurityGroups_vmss1nsg_externalid')]"
+                                },
+                                "dnsSettings": {
+                                    "dnsServers": []
+                                },
+                                "enableIPForwarding": false,
+                                "ipConfigurations": [
+                                    {
+                                        "name": "vmss1IpConfig",
+                                        "properties": {
+                                            "subnet": {
+                                                "id": "[concat(parameters('virtualNetworks_vnet1_externalid'), '/subnets/default')]"
+                                            },
+                                            "privateIPAddressVersion": "IPv4"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "hardwareProfile": {},
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "OpenLogic",
+                        "offer": "CentOS",
+                        "sku": "7.5",
+                        "version": "7.5.20180815"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "vmss1uopvosdisk-os-0-184b131050ae43b0bf70bb795cce2279",
+                        "createOption": "FromImage",
+                        "vhd": {
+                            "uri": "https://uopv7ypflvmss1uopvsa0.blob.core.windows.net/vmss1uopvvhd/vmss1uopvosdisk-os-0-184b131050ae43b0bf70bb795cce2279.vhd"
+                        },
+                        "caching": "ReadWrite"
+                    }
+                },
+                "osProfile": {
+                    "computerName": "vmss1uopv000000",
+                    "adminUsername": "dla",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": false,
+                        "provisionVMAgent": true
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[concat(resourceId('Microsoft.Compute/virtualMachineScaleSets/virtualMachines', parameters('virtualMachineScaleSets_vmss1_name'), '0'), '/networkInterfaces/vmss1Nic')]"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}
