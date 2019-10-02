@@ -13,21 +13,24 @@
         },
         "networkSecurityGroupRules": {
             "value": [
-                {
-                    "name": "default-allow-ssh",
-                    "properties": {
-                        "priority": 1000,
-                        "protocol": "TCP",
-                        "access": "Allow",
-                        "direction": "Inbound",
-                        "sourceApplicationSecurityGroups": [],
-                        "destinationApplicationSecurityGroups": [],
-                        "sourceAddressPrefix": "*",
-                        "sourcePortRange": "*",
-                        "destinationAddressPrefix": "*",
-                        "destinationPortRange": "22"
+                    {
+                        "name": "default-allow-ssh",
+                        "properties": {
+                            "protocol": "TCP",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "22",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 1000,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
                     },
-					{
+                    {
                         "name": "Allow-http",
                         "properties": {
                             "protocol": "*",
@@ -47,8 +50,7 @@
                             "destinationAddressPrefixes": []
                         }
                     }
-                }
-            ]
+                ]
         },
         "subnetName": {
             "value": "default"
