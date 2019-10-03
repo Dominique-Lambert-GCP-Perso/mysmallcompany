@@ -1,8 +1,8 @@
 #!/bin/bash
-rgName=$(az group list --query '[].{name:name}' --output tsv)
-vnetName=$(az network vnet list --query '[].{name:name}' --output tsv)
-snetName=$(az network vnet subnet list --resource-group $rgName --vnet-name $vnetName --query "[?contains(name, 'snet2')].{Name:name}" --output tsv)
-agwName=$(az network application-gateway list --query '[].{name:name}' --output tsv)
+rgName="grptest"
+vnetName="vnet1"
+snetName="subnetvm"
+agwName="apgw02"
 
 echo "rgName : $rgName"
 echo "vnetName : $vnetName"
@@ -28,7 +28,7 @@ for i in `seq 1 1`; do
   fi
 
   az vmss create \
-    --name myvmss$i \
+    --name myvmss03$i \
     --resource-group $rgName \
     --image UbuntuLTS \
     --admin-username azureuser \
