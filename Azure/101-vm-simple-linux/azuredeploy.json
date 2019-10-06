@@ -38,7 +38,7 @@
         "7.5"
       ],
       "metadata": {
-        "description": "The Ubuntu version for the VM. This will pick a fully patched image of this given Ubuntu version."
+        "description": "The Centos version for the VM. This will pick a fully patched image of this given Centos version."
       }
     },
     "location": {
@@ -60,7 +60,7 @@
     "storageAccountType": "Standard_LRS",
     "publicIPAddressName": "myPublicIP",
     "publicIPAddressType": "Dynamic",
-    "vmName": "MyUbuntuVM",
+    "vmName": "MyCentosVM",
     "vmSize": "Standard_B1ls",
     "virtualNetworkName": "MyVNET",
     "linuxConfiguration": {

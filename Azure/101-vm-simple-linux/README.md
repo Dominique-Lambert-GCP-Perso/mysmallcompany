@@ -1,4 +1,14 @@
-# Very simple deployment of a Linux VM
+# Azure Resource Manager
+
+## Sources get started
+https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-simple-linux
+
+Déploiement d'un VM Centos
+
+
+
+
+## Very simple deployment of a Linux VM
 
 <IMG SRC="https://azurequickstartsservice.blob.core.windows.net/badges/101-vm-simple-linux/PublicLastTestDate.svg" />&nbsp;
 <IMG SRC="https://azurequickstartsservice.blob.core.windows.net/badges/101-vm-simple-linux/PublicDeployment.svg" />&nbsp;
