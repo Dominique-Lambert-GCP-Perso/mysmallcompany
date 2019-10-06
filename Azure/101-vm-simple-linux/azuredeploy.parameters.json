@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "adminUsername": {
+      "value": "dla"
+    },
+    "adminPasswordOrKey": {
+      "value": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAqbJJOi+Pa78izGUYcbn/W5c1DG17UWUu/InFfGdFr3G3BAgSKmptT/2tjSvK/eJE0//9P53IMlvp9ZQApgCZzccxObTAC71JwqdfmuCNgh72lkC+pp3IUpJw3fz6fRHE1ofDuxkAPYrVrtqofbvPiewTANkG/4kDXyde+S8ZmKMnryzS8GrjFrt0xDjfSiSRF/Jf1i95t/WiJehE4TyaydESnbvkxwlcxV1r+26YThhlB0sTPhitwWwL21Q6isi94Ck5pgnZ7IU6ft0Yew8gwsKH6WH9aAMyCgtwczfvhLyAO8giVqq/ttAg5e+AJOIQaOK8uBUaTfOlHV6px7IXoQ== rsa-key-20191006"
+    },
+    "dnsLabelPrefix": {
+      "value": "dla"
+    }
+  }
+}
