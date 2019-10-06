@@ -62,7 +62,7 @@
     "publicIPAddressType": "Dynamic",
     "vmName": "MyCentosVM",
     "vmSize": "Standard_B1ls",
-    "virtualNetworkName": "MyVNET",
+    "virtualNetworkName": "vnet1",
     "linuxConfiguration": {
       "disablePasswordAuthentication": true,
       "ssh": {
