@@ -3,7 +3,7 @@
 ## Sources get started
 https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-simple-linux
 
-Déploiement d'un VM Centos
+Déploiement d'une VM Centos
 
 
 
