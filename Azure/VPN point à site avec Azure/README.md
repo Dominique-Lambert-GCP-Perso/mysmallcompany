@@ -12,6 +12,7 @@ Sujet abordés
 Remarques :
 - le pool d'IP configuré dans le VPN correspond aux IP (interface) de la connexion montée sur le poste client
 - l'installation du client intègre "le routage" vers le range d'IP du VNet monté (comment accèder à une VM qui n'est pas dans le VNet ?)
+- le montage du "Virtual network gateway" prend beaucoup de temps (20 minutes) donc pas question qu'il soit temporaire (lancé tous les jours)
 
 ## 
 
