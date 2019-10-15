@@ -30,21 +30,23 @@ docker-machine create   -d azure
 docker-machine ssh mydocker
 ```
 
-## Build d'un conteneur exemple
-
-. git clone https://github.com/Azure-Samples/acr-build-helloworld-node
-. cd acr-build-helloworld-node
-. docker build -t helloacrbuild:v1 .
-. docker run -d -p 8091:80 helloacrbuild:v1
-. Navigate to http://localhost:8091 to view the running application
+## Build d'un conteneur exemple (simple node.js)
+```Shell
+git clone https://github.com/Azure-Samples/acr-build-helloworld-node
+cd acr-build-helloworld-node
+docker build -t helloacrbuild:v1 .
+docker run -d -p 8091:80 helloacrbuild:v1
+Navigate to http://localhost:8091 to view the running application
+```
 
 ## Accès via l'IP public
 "docker-machine create" a créer  :
-	- docker-machine : groupe de resources
-	- docker-machine : availibility set
-	- my docker : un host
-	- mydocker_ip
-	- mydocker_firewall
+
+- docker-machine : groupe de resources
+- docker-machine : availibility set
+- my docker : un host
+- mydocker_ip
+- mydocker_firewall
 	
 Le service HTTP délivré par le conteneur est accessible via l'ip public sur le port 8091 a condition d'ajouter la régle "inbound decurity rules" pour autorisé à sortir en 8091
 
