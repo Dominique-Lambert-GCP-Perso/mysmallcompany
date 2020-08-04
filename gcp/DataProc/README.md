@@ -3,7 +3,8 @@
 https://cloud.google.com/dataproc/docs/quickstarts/quickstart-gcloud?hl=en_US#clean-up
 
 ## Crération d'un cluster Single Node
-Cloud storage : -b on : attention no ACL
+Cloud storage : 
+-b on : attention no ACL
 ```Shell
   gsutil mb -b on -c Standard -l EUROPE-WEST1 gs://cs-for-dataproc-dla
   gsutil mb -b on -c Standard -l EUROPE-WEST1 gs://cs-for-dataproc-dla-temp
