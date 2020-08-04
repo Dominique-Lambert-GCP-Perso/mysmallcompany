@@ -2,18 +2,9 @@
 ## Source
 https://cloud.google.com/dataproc/docs/quickstarts/quickstart-gcloud?hl=en_US#clean-up
 
-```Shell
-gcloud dataproc clusters delete cluster-6177 --region=europe-west1
-gsutil rm gs://dataproc-staging-europe-west1-336543948613-bh0vatyl/**
-gsutil rm -r gs://dataproc-temp-europe-west1-336543948613-qcjksd6y
-gsutil rm gs://dataproc-temp-europe-west1-336543948613-qcjksd6y/**
-gsutil rm -r gs://dataproc-staging-europe-west1-336543948613-bh0vatyl
-
-```
-
 ## Crération d'un cluster Single Node
 Cloud storage :
-  # -b on : attention no ACL
+  -b on : attention no ACL
 ```Shell
   gsutil mb -b on -c Standard -l EUROPE-WEST1 gs://cs-for-dataproc-dla
   gsutil mb -b on -c Standard -l EUROPE-WEST1 gs://cs-for-dataproc-dla-temp
@@ -30,3 +21,8 @@ gcloud dataproc clusters describe cluster-dataproc-dla --region=europe-west1
 
 Lancer un job sur le cluster
 gcloud dataproc jobs submit spark --cluster cluster-dataproc-dla --region europe-west1 --class org.apache.spark.examples.SparkPi --class org.apache.spark.examples.SparkPi --jars file:///usr/lib/spark/examples/jars/spark-examples.jar -- 1000
+
+Suppressions
+  gcloud dataproc clusters delete cluster-dataproc-dla --region europe-west1
+  gsutil rm -r gs://cs-for-dataproc-dla
+  gsutil rm -r gs://cs-for-dataproc-dla-temp
