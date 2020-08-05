@@ -10,3 +10,9 @@ username = lambert.eworking@free.fr
 [credential]
 helper = store
 ```
+* Commandes
+```
+git config --global user.email lambert.eworking@free.fr
+git config --global user.name dlambert-eworking
+git config credential.helper 'store'
+```
