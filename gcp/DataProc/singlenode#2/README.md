@@ -1,6 +1,6 @@
 # DataProc
 ## Source
-https://cloud.google.com/dataproc/docs/quickstarts/quickstart-gcloud?hl=en_US#clean-up
+https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/network?hl=en_US&authuser=0#custom
 
 ## Crération d'un cluster Single Node
 Cloud storage : 
@@ -10,9 +10,16 @@ Cloud storage :
   gsutil mb -b on -c Standard -l EUROPE-WEST1 gs://cs-for-dataproc-dla-temp
 ```
 
+Création des réseaux et sous-réseaux
+
+```Shell
+gcloud compute networks create vpc-dataproc --project=data-proc-test-dla --subnet-mode=custom --bgp-routing-mode=regional
+gcloud compute networks subnets create subnet-dataproc --project=data-proc-test-dla --range=10.0.0.0/9 --network=vpc-dataproc --region=europe-west1 --enable-private-ip-google-access
+```
+
 Création du cluster
 ```Shell
-gcloud dataproc clusters create cluster-dataproc-dla --enable-component-gateway --bucket cs-for-dataproc-dla --temp-bucket cs-for-dataproc-dla-temp --region europe-west1 --subnet default --zone europe-west1-b --single-node --master-machine-type n1-standard-1 --master-boot-disk-size 500 --image-version 1.3-debian10 --project data-proc-test-dla
+gcloud dataproc clusters create cluster-dataproc-dla --enable-component-gateway --bucket cs-for-dataproc-dla --temp-bucket cs-for-dataproc-dla-temp --region europe-west1 --subnet default --no-address --zone europe-west1-b --single-node --master-machine-type n1-standard-1 --master-boot-disk-size 500 --image-version 1.3-debian10 --project data-proc-test-dla
 ```
 
 Description du cluster
