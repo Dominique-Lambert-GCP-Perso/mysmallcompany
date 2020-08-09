@@ -60,3 +60,13 @@ gcloud compute networks delete vpc-dataproc --project=data-proc-test-dla
 
 
 ```
+
+## Accès avec un utilisateur sans provilèges
+```Shell
+gcloud compute ssh cluster-dataproc-dla-m ^
+  --project=data-proc-test-dla ^
+  --zone=europe-west1-b -- -D 1080 -N
+  
+  "%ProgramFiles(x86)%\Google\Chrome\Application\chrome.exe" ^
+  --proxy-server="socks5://localhost:1080" ^
+  --user-data-dir="%Temp%\cluster-dataproc-dla-m" http://cluster-dataproc-dla-m:8088
