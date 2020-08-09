@@ -60,6 +60,13 @@ gcloud compute networks delete vpc-dataproc --project=data-proc-test-dla
 ```
 
 ## Accès avec un utilisateur sans provilèges
+Lister les privilèges
+
+```Shell
+gcloud projects get-iam-policy data-proc-test-dla --format json > policies.json
+gcloud projects set-iam-policy data-proc-test-dla policies.json --format json
+```
+
 Sous cloud shell :
 ```Shell
 gcloud compute ssh cluster-dataproc-dla-m ^
