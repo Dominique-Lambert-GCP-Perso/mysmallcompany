@@ -57,6 +57,25 @@ gcloud compute --project=data-proc-test-dla firewall-rules delete vpc-dataproc-a
 gcloud compute networks subnets delete subnet-dataproc --project=data-proc-test-dla
 gcloud compute networks delete vpc-dataproc --project=data-proc-test-dla
 
-
-
 ```
+
+## Accès avec un utilisateur sans provilèges
+Lister les privilèges
+
+```Shell
+gcloud projects get-iam-policy data-proc-test-dla --format json > policies.json
+gcloud projects set-iam-policy data-proc-test-dla policies.json --format json
+```
+
+Sous cloud shell :
+```Shell
+gcloud compute ssh cluster-dataproc-dla-m ^
+  --project=data-proc-test-dla ^
+  --zone=europe-west1-b -- -D 1080 -N
+```
+
+Sous DOS
+```Shell
+  "%ProgramFiles(x86)%\Google\Chrome\Application\chrome.exe" ^
+  --proxy-server="socks5://localhost:1080" ^
+  --user-data-dir="%Temp%\cluster-dataproc-dla-m" http://cluster-dataproc-dla-m:8088
