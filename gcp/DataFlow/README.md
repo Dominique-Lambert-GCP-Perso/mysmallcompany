@@ -1,62 +1,47 @@
-# DataProc
-## Source
-https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/network?hl=en_US&authuser=0#custom
+# DataFlow
 
-## CrÃ©ration d'un cluster Single Node
-Cloud storage : CrÃ©ation des bucket
--b on : attention no ACL
+## Apache Beam Sources Quistart-java
+https://beam.apache.org/get-started/quickstart-java/
+
+Direct-runner : OK
+
+dataflow-runner : ligne de commande légerement différentes de la documentation  (-Pdataflow-runner passé sur mvn)
+
+Projet GCP : msc-network-tests
+Storage : gs://word-count-dla
+
 ```Shell
-  gsutil mb -b on -c Standard -l EUROPE-WEST1 gs://cs-for-dataproc-dla
-  gsutil mb -b on -c Standard -l EUROPE-WEST1 gs://cs-for-dataproc-dla-temp
+mvn -Pdataflow-runner compile exec:java -D exec.mainClass=org.apache.beam.examples.WordCount `
+		-D exec.args="--runner=DataflowRunner --project=msc-network-tests `
+					  --gcpTempLocation=gs://word-count-dla/tmp `
+					  --inputFile=gs://apache-beam-samples/shakespeare/* `
+					  --output=gs://word-count-dla/counts"
 ```
 
-CrÃ©ation des rÃ©seaux et sous-rÃ©seaux
-avec --enable-private-ip-google-access
+## Dataflow Java et Eclipse 
+https://cloud.google.com/dataflow/docs/quickstarts/quickstart-java-eclipse?hl=fr
+
+Utilisation du plugin Cloud Tools for Eclipse (Java)
+Projet java : WordCount avec utilisation du package : com.google.cloud.dataflow.examples.WordCount
+
+Difficulté : la package semble de pas reconnaitre le gcpTempLocation s'il ne comprend pas 2 sous répertoires dans le bucket (issue connue sur le net) 
+
+Fonctionne avec les paramètres suivants (run configuration)
+
 ```Shell
-gcloud compute networks create vpc-dataproc --project=data-proc-test-dla --subnet-mode=custom --bgp-routing-mode=regional
-gcloud compute networks subnets create subnet-dataproc --project=data-proc-test-dla --range=10.0.0.0/9 --network=vpc-dataproc --region=europe-west1 --enable-private-ip-google-access
+--output=gs://wordcount-mysmallcompany/counts 
+--inputFile=gs://wordcount-mysmallcompany/input/* 
+--gcpTempLocation=gs://wordcount-mysmallcompany/tmp/tmp
 ```
 
-CrÃ©ation des rÃ©gles de FireWall
-Uniquement des autorisations de flux internes aux VPC et Subnet
-```Shell
-gcloud compute --project=data-proc-test-dla firewall-rules create vpc-dataproc-allow-internal --direction=INGRESS --priority=1000 --network=vpc-dataproc --action=ALLOW --rules=udp:0-65535,tcp:0-65535,icmp --source-ranges=10.0.0.0/9
-gcloud compute --project=data-proc-test-dla firewall-rules create vpc-dataproc-allow-ssh --direction=INGRESS --priority=1000 --network=vpc-dataproc --action=ALLOW --rules=tcp:22 --source-ranges=0.0.0.0/0
-```
+Test : Réaliser le comptage sur l'ensemble des mots du livre Eat pray and love (Elisabeth Gilbert) => voir data/
 
-CrÃ©ation du cluster
---no-address : pas d'IP publics
-```Shell
-gcloud dataproc clusters create cluster-dataproc-dla --enable-component-gateway --bucket cs-for-dataproc-dla --temp-bucket cs-for-dataproc-dla-temp --region europe-west1 --subnet subnet-dataproc --no-address --zone europe-west1-b --single-node --master-machine-type n1-standard-1 --master-boot-disk-size 500 --image-version 1.3-debian10 --project data-proc-test-dla
-```
+Points à creuser :
+Infra
+- utiliser les autres exemples fournit dans le package d'exemples
+- modifier les paramètre d'appel pour ne plus traiter sur une zone US
+- est-ce qu'il est possible de déposer le package de traitement dans un bucket local pour ne pas avoir à le rebuilder et relancer depuis Eclipse
 
-Description du cluster
-```Shell
-gcloud dataproc clusters list --region europe-west1
-gcloud dataproc clusters describe cluster-dataproc-dla --region=europe-west1
-```
-
-Lancer un job sur le cluster
-```Shell
-gcloud dataproc jobs submit spark --cluster cluster-dataproc-dla --region europe-west1 --class org.apache.spark.examples.SparkPi --class org.apache.spark.examples.SparkPi --jars file:///usr/lib/spark/examples/jars/spark-examples.jar -- 1000
-```
-
-AccÃ¨s au cluster par tunnel SSH
-```Shell
-gcloud beta compute ssh --zone "europe-west1-b" "cluster-dataproc-dla-m" --tunnel-through-iap --project "data-proc-test-dla"
-```
-
-Suppressions
-```Shell
-
-gcloud dataproc clusters delete cluster-dataproc-dla --region europe-west1
-gsutil rm -r gs://cs-for-dataproc-dla
-gsutil rm -r gs://cs-for-dataproc-dla-temp
-gcloud compute --project=data-proc-test-dla firewall-rules delete vpc-dataproc-allow-internal
-gcloud compute --project=data-proc-test-dla firewall-rules delete vpc-dataproc-allow-ssh
-gcloud compute networks subnets delete subnet-dataproc --project=data-proc-test-dla
-gcloud compute networks delete vpc-dataproc --project=data-proc-test-dla
-
-
-
-```
+Application
+- passer en minuscule avant le comptage
+- exploiter les données dans une application front à partir d'une base StorageData
