@@ -3,7 +3,6 @@
 ## Apache Beam Sources Quistart-java
 https://beam.apache.org/get-started/quickstart-java/
 
-clean.sh : supression du projet
 word-count-beam-create.bat : création du projet avec maven 
 
 word-count-beam-run-local : lancement de word count en local (direct-runner par défaut)
