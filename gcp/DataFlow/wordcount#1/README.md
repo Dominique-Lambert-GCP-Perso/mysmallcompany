@@ -60,6 +60,7 @@ word-count-beam-run-dataflow-inputFile.bat : lance word count avec les données 
 mvn -Pdataflow-runner compile exec:java ^
       -Dexec.mainClass=org.apache.beam.examples.WordCount ^
       -Dexec.args="--project=data-flow-test-dla --stagingLocation=gs://cs-for-dataflow-dla/staging/ --output=gs://cs-for-dataflow-dla/output --inputFile=gs://cs-for-dataflow-dla/input/input_Eat_pray_love.txt --gcpTempLocation=gs://cs-for-dataflow-dla/tmp/ --runner=DataflowRunner --region=europe-west1"
+```
 
 Application
 - passer en minuscule avant le comptage
