@@ -15,7 +15,13 @@ word-count-beam-run-dataflow
 Projet GCP : data-flow-test-dla
 deploy.sh : création du projet et des bucket
 
-Créer un compte de service : "data-flow-test-dla", appliquer le rôle owner (à afinner). Attention : Le téléchargement s'obtient avec le bouton créer sur la clé existante
+Créer un compte de service : "data-flow-test-dla", appliquer le rôle owner (à afinner). 
+Attention : Le téléchargement s'obtient avec le bouton créer sur la clé existante (ou via gcloud iam)
+```Shell
+gcloud iam service-accounts keys create my-data-flow-service-account.json --iam-account my-data-flow-service-account@data-flow-test-dla.iam.gserviceaccount.com
+```
+
+
 Depuis un poste sous Windows il faut setter la variable locale GOOGLE_APPLICATION_CREDENTIALS
 ```Shell
 SET GOOGLE_APPLICATION_CREDENTIALS=C:\Users\Utilisateur\cles\data-flow-test-dla-0b411f30ff7a.json
