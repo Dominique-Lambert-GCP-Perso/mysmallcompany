@@ -11,7 +11,7 @@ mvn compile exec:java ^
 	-Dexec.mainClass=org.apache.beam.examples.WordCount -Dexec.args="--output=counts"
 ```
 
-word-count-beam-run-dataflow
+word-count-beam-run-dataflow.bat
 Projet GCP : data-flow-test-dla
 deploy.sh : création du projet et des bucket
 
@@ -40,9 +40,26 @@ https://cloud.google.com/dataflow/docs/quickstarts/quickstart-java-eclipse?hl=fr
 
 Utilisation du plugin Cloud Tools for Eclipse (Java)
 Projet java : WordCount avec utilisation du package : com.google.cloud.dataflow.examples.WordCount
-Import de .POM
 
-Test : Réaliser le comptage sur l'ensemble des mots du livre Eat pray and love (Elisabeth Gilbert) => voir data/
+- Importer le projet  de .POM
+- Paramètre depuis "Run configuration"
+- Goals : -Pdataflow-runner compile exec:java
+- Paramètre :
+	- exec.mainClass : org.apache.beam.examples.WordCount
+	- exec.args : --project=data-flow-test-dla --stagingLocation=gs://cs-for-dataflow-dla/staging/ --output=gs://cs-for-dataflow-dla/output --gcpTempLocation=gs://cs-for-dataflow-dla/output/tmp/ --runner=DataflowRunner --region=europe-west1
+- Environnement :
+	- GOOGLE_APPLICATION_CREDENTIALS : C:\Users\Utilisateur\cles\data-flow-test-dla-0b411f30ff7a.json
+	
+
+Test : Réaliser le comptage sur l'ensemble des mots du livre Eat pray and love (Elisabeth Gilbert) 
+load data.sh : charge les données depuis data/
+
+word-count-beam-run-dataflow-inputFile.bat : lance word count avec les données chargée
+
+```Shell
+mvn -Pdataflow-runner compile exec:java ^
+      -Dexec.mainClass=org.apache.beam.examples.WordCount ^
+      -Dexec.args="--project=data-flow-test-dla --stagingLocation=gs://cs-for-dataflow-dla/staging/ --output=gs://cs-for-dataflow-dla/output --inputFile=gs://cs-for-dataflow-dla/input/input_Eat_pray_love.txt --gcpTempLocation=gs://cs-for-dataflow-dla/tmp/ --runner=DataflowRunner --region=europe-west1"
 
 Application
 - passer en minuscule avant le comptage
