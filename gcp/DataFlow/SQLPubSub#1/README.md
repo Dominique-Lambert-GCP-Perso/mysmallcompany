@@ -35,7 +35,7 @@ FROM pubsub.topic.`data-flow-test-dla`.transactions as tr
   INNER JOIN bigquery.table.`data-flow-test-dla`.dataflow_sql_dataset.us_state_salesregions AS sr
   ON tr.state = sr.state_code' --job-name dfsql-test-dla --region europe-west1 --bigquery-write-disposition write-empty --bigquery-project data-flow-test-dla --bigquery-dataset dataflow_sql_dataset --bigquery-table dfsqltable_sales
 ```
-Descibe du job :
+Describe du job :
 ```Shell
 gcloud dataflow jobs describe --region europe-west1 2020-08-27_09_07_26-10918414365182703414 --format="json"
 ```
@@ -146,9 +146,10 @@ gcloud dataflow jobs describe --region europe-west1 2020-08-27_09_07_26-10918414
   "type": "JOB_TYPE_STREAMING"
 }
 ```
-- transactions_injector.py : alimente le topic
+transactions_injector.py : alimente le topic
 
-- clean.sh : suppression des resources
+clean.sh : suppression des resources
 
 # TO DO
 - implement set_variable.sh : https://github.com/GoogleCloudPlatform/bigquery-data-lineage/blob/master/set_variables.sh
+- complete "gcloud dataflow sql query" in order to avoid ressources leaks (staging bucket)
