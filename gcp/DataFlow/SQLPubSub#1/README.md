@@ -39,7 +39,7 @@ Descibe du job :
 ```Shell
 gcloud dataflow jobs describe --region europe-west1 2020-08-27_09_07_26-10918414365182703414 --format="json"
 ```
-```Shell
+```json
 {
   "createTime": "2020-08-27T16:07:27.037488Z",
   "currentState": "JOB_STATE_RUNNING",
