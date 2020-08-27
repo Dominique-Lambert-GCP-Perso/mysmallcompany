@@ -20,9 +20,16 @@ echo "Data-Catalog : attach schema to PubSub Topic"
 gcloud data-catalog entries update --lookup-entry='pubsub.topic.`data-flow-test-dla`.transactions' --schema-from-file=pubsub-schema.json
 
 echo "DataFlow : create Dataflow job" 
-gcloud dataflow sql query 'SELECT tr.*, sr.sales_region
-FROM pubsub.topic.`data-flow-test-dla`.transactions as tr
-  INNER JOIN bigquery.table.`data-flow-test-dla`.dataflow_sql_dataset.us_state_salesregions AS sr
-  ON tr.state = sr.state_code' --job-name dfsql-test-dla --region europe-west1 --bigquery-write-disposition write-empty --bigquery-project data-flow-test-dla --bigquery-dataset dataflow_sql_dataset --bigquery-table dfsqltable_sales
+
+JOB_ID=$(gcloud dataflow jobs list --region europe-west1 --filter="name=dfsql-test-dla STATE=Running" --format="value(JOB_ID)");
+if [ "$JOB_ID" != "" ] 
+then
+    echo "One job (JOB_ID=$JOB_ID) currently running wiyth name dfsql-test-dla"
+else
+    gcloud dataflow sql query 'SELECT tr.*, sr.sales_region
+        FROM pubsub.topic.`data-flow-test-dla`.transactions as tr
+            INNER JOIN bigquery.table.`data-flow-test-dla`.dataflow_sql_dataset.us_state_salesregions AS sr
+            ON tr.state = sr.state_code' --job-name dfsql-test-dla --region europe-west1 --bigquery-write-disposition write-empty --bigquery-project data-flow-test-dla --bigquery-dataset dataflow_sql_dataset --bigquery-table dfsqltable_sales
+fi
 
 echo "Fin"
