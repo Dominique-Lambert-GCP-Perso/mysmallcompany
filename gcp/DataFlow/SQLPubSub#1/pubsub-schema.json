@@ -1,0 +1,48 @@
+[
+  {
+      "description": "Pub/Sub event timestamp",
+      "column": "event_timestamp",
+      "mode": "REQUIRED",
+      "type": "TIMESTAMP"
+  },
+  {
+      "description": "Transaction time string",
+      "column": "tr_time_str",
+      "type": "STRING"
+  },
+  {
+      "description": "First name",
+      "column": "first_name",
+      "type": "STRING"
+  },
+  {
+      "description": "Last name",
+      "column": "last_name",
+      "type": "STRING"
+  },
+  {
+      "description": "City",
+      "column": "city",
+      "type": "STRING"
+  },
+  {
+      "description": "State",
+      "column": "state",
+      "type": "STRING"
+  },
+  {
+      "description": "Product",
+      "column": "product",
+      "type": "STRING"
+  },
+  {
+      "description": "Amount of transaction",
+      "column": "amount",
+      "type": "FLOAT64"
+  },
+  {
+      "description": "Ma colonne",
+      "column": "my_column",
+      "type": "STRING"
+  }
+]

@@ -27,6 +27,7 @@ while True:
     'state':random.choice(STATES),
     'product': random.choice(PRODUCTS),
     'amount': float(random.randrange(50000, 70000)) / 100,
+    'my_column' : "tutu",
   }
 
   # For a more complete example on how to publish messages in Pub/Sub.
