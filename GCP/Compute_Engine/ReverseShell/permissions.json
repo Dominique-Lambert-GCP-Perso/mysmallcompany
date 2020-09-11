@@ -1,0 +1,45 @@
+{
+  "bindings": [
+    {
+      "members": [
+        "serviceAccount:service-220526071536@gcp-sa-bigqueryconnection.iam.gserviceaccount.com"
+      ],
+      "role": "roles/bigqueryconnection.serviceAgent"
+    },
+    {
+      "members": [
+        "user:dlambert.family@gmail.com"
+      ],
+      "role": "roles/compute.osAdminLogin"
+    },
+    {
+      "members": [
+        "serviceAccount:service-220526071536@compute-system.iam.gserviceaccount.com"
+      ],
+      "role": "roles/compute.serviceAgent"
+    },
+    {
+      "members": [
+        "serviceAccount:service-220526071536@dataflow-service-producer-prod.iam.gserviceaccount.com"
+      ],
+      "role": "roles/dataflow.serviceAgent"
+    },
+    {
+      "members": [
+        "serviceAccount:220526071536-compute@developer.gserviceaccount.com",
+        "serviceAccount:220526071536@cloudservices.gserviceaccount.com"
+      ],
+      "role": "roles/editor"
+    },
+    {
+      "members": [
+        "serviceAccount:my-data-flow-service-account@data-flow-test-dla.iam.gserviceaccount.com",
+        "serviceAccount:my-dataflow-service-account2@data-flow-test-dla.iam.gserviceaccount.com",
+        "user:dlambert.family@gmail.com"
+      ],
+      "role": "roles/owner"
+    }
+  ],
+  "etag": "BwWvCo8UHPU=",
+  "version": 1
+}
