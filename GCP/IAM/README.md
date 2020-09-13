@@ -1,4 +1,15 @@
 # IAM
+## Public Idententity
+  username : ext_dlambert_family_gmail_com
+  email : dlambert.family@gmail.com
+  clé public : ext.dlambert.family.pub
+  organisation : externe
+
+  username : leslie_johnson_mysmallcompany_tv
+  email : leslie.johnson@mysmallcompany.tv
+  clé public : leslie.johnson.pub
+  organisation : mysmallcompany.tv
+
 
 ## Set OS Login
 source : https://cloud.google.com/compute/docs/instances/managing-instance-access?hl=fr#enable_oslogin
