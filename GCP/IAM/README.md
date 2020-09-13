@@ -41,7 +41,7 @@ sshPublicKeys:
 
 TODO : déterminer qui à le droit de modifier un profile utilisteur sachant que la clé Pulique SSH ne peut être gérée via Cloud Identity (Mais peut l'être avec GSuite)
 
-Pour activer OS Login la VM la meta donnée enable-oslogin doit être initialisée à TRUE
+Pour activer OS Login sur la VM la meta donnée enable-oslogin doit être initialisée à TRUE (la meta donnée peut-être settée au niveau du projet)
 ```Shell
   gcloud beta compute --project=${project} instances create reverse-shell-server \
     --zone=europe-west1-b \
