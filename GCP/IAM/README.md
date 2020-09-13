@@ -12,7 +12,7 @@ Le rôle primitife owner contient déjà le rôle compute.osAdminLogin
   gcloud projects set-iam-policy data-flow-test-dla permissions.json
 ```
 
-Pour se connecter avec une clé SSH il faut ajouter la clé SSH au profile utilisateur
+Pour se connecter avec une clé SSH il faut ajouter la clé publique SSH au profile utilisateur
 ```Shell
 gcloud compute os-login ssh-keys add --key-file leslie.johnson.pub
 ```
@@ -39,7 +39,7 @@ sshPublicKeys:
     name: users/leslie.johnson@mysmallcompany.tv/sshPublicKeys/4350b39aaf52ec1e8d13a09f78723a70cc4f233ecbc4bcd4049cb699aa17843f
 ```
 
-TODO : déterminé qui à le droit de modifier un profile utilisteur sachant que la clé Pulique SSH ne peut être gérée via Cloud Identity (Mais peut l'être avec GSuite)
+TODO : déterminer qui à le droit de modifier un profile utilisteur sachant que la clé Pulique SSH ne peut être gérée via Cloud Identity (Mais peut l'être avec GSuite)
 
 Pour activer OS Login la VM la meta donnée enable-oslogin doit être initialisée à TRUE
 ```Shell
@@ -66,3 +66,4 @@ Pour activer OS Login la VM la meta donnée enable-oslogin doit être initialis�
     --metadata enable-oslogin=TRUE
 ```
 
+TODO : lorsque qu'un utilisateur se connecte avec OS Login il semble andoser le compte de service setté au moment de la création de la VM (voir peut-être roles/iam.serviceAccountUser)
