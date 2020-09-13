@@ -40,6 +40,7 @@ sshPublicKeys:
 ```
 
 TODO : déterminer qui à le droit de modifier un profile utilisteur sachant que la clé Pulique SSH ne peut être gérée via Cloud Identity (Mais peut l'être avec GSuite)
+TODO : posixAccounts semble "immutable", le compte dlambert.efamily.gmail.com par exemple semble être 'vérolé' avec des valeurs de 'account' settées avec des id de projets anciens.
 
 Pour activer OS Login sur la VM la meta donnée enable-oslogin doit être initialisée à TRUE (la meta donnée peut-être settée au niveau du projet)
 ```Shell
