@@ -2,7 +2,7 @@
 ## Source
 https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/network?hl=en_US&authuser=0#custom
 
-## Crération d'un cluster Single Node
+## Création d'un cluster Single Node
 Cloud storage : Création des bucket
 -b on : attention no ACL
 ```Shell
@@ -57,6 +57,15 @@ gcloud compute --project=data-proc-test-dla firewall-rules delete vpc-dataproc-a
 gcloud compute networks subnets delete subnet-dataproc --project=data-proc-test-dla
 gcloud compute networks delete vpc-dataproc --project=data-proc-test-dla
 
-
-
 ```
+
+## Source
+https://cloud.google.com/dataproc/docs/tutorials/spark-scala?hl=fr
+
+## Écrire et exécuter des tâches Spark Scala sur Cloud Dataproc
+Remarque : spark-shell ne s'est pas lancé lorsque le cluster mono-server 
+  - comprennait "--optional-components=ANACONDA,DRUID,ZOOKEEPER,HBASE,HIVE_WEBHCAT,JUPYTER"
+  - étaiat de type n1-standard-1 => passé en n1-standard-2
+
+TODO : les écritures gs:// semblent fonctionner depuis Spark => voir s'il existe des limitations connues
+
