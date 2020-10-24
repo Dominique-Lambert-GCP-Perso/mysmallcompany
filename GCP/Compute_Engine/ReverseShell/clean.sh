@@ -6,4 +6,5 @@ gcloud beta compute --project=$project instances delete --zone=europe-west1-b re
 
 echo "delete FireWall rules, subnet and VPC"
 gcloud compute --project=$project firewall-rules delete default-allow-http
+gcloud compute --project=$project firewall-rules delete default-allow-reverse
 echo "Fin"

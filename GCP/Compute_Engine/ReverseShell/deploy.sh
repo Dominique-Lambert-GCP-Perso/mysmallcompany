@@ -31,5 +31,6 @@ gcloud beta compute --project=${project} instances create reverse-shell-server \
 
 echo "FireWall"
 gcloud compute --project=$project firewall-rules create default-allow-http --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:80 --source-ranges=0.0.0.0/0 --target-tags=http-server
+gcloud compute --project=$project firewall-rules create default-allow-reverse --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:999 --source-ranges=0.0.0.0/0 --target-tags=http-server
 
 echo "Fin"
