@@ -15,6 +15,7 @@ Avant de réaliser le git clone classique sur son poste il faut configurer git p
 
 - Un lien vers "https://source.developers.google.com/new-password" s'affiche et propose les commandes de configuration de Git avec les crédentials associés à votre compte
 
+![](https://github.com/Dominique-Lambert-GCP-Perso/mysmallcompany/blob/master/GCP/Cloud%20Source%20Repositories/Git%20Credentials.PNG)
 
 ## 
 ```Shell
