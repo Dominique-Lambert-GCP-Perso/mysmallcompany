@@ -21,6 +21,7 @@ Avant de réaliser le git clone classique sur son poste il faut configurer git p
 
 - tests réalisés : aprés avoir registré une clé publique dans Cloud source ripositorie la commande ce clonne done ceci :
 
+```Shell
 Utilisateur@DESKTOP-4G169MH MINGW32 ~/Documents
 $ git clone ssh://dlambert.family@gmail.com@source.developers.google.com:2022/p/data-proc-test-dla/r/test_repo
 Cloning into 'test_repo'...
@@ -29,3 +30,4 @@ fatal: Could not read from remote repository.
 
 Please make sure you have the correct access rights
 and the repository exists.
+```
