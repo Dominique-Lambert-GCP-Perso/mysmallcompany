@@ -12,7 +12,7 @@ Avant de réaliser le git clone classique sur son poste il faut configurer git p
 
 ![](https://github.com/Dominique-Lambert-GCP-Perso/mysmallcompany/blob/master/GCP/Cloud%20Source%20Repositories/Manually%20generate%20credential%20to%20git.PNG) 
 
-- Aprés nouvelle demande d'authentification sur votre compte un lien vers "https://source.developers.google.com/new-password" s'affiche et propose les commandes de configuration de Git avec les crédentials associés à votre compte (jouer ces commandes sur votre poste).
+- Aprés une nouvelle demande d'authentification sur votre compte un lien vers "https://source.developers.google.com/new-password" s'affiche et propose les commandes de configuration de Git avec les crédentials associés à votre compte (jouer ces commandes sur votre poste).
 
 ![](https://github.com/Dominique-Lambert-GCP-Perso/mysmallcompany/blob/master/GCP/Cloud%20Source%20Repositories/Git%20Credentials.PNG)
 
