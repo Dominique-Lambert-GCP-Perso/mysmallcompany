@@ -16,10 +16,24 @@ Avant de réaliser le git clone classique sur son poste il faut configurer git p
 
 ![](https://github.com/Dominique-Lambert-GCP-Perso/mysmallcompany/blob/master/GCP/Cloud%20Source%20Repositories/Git%20Credentials.PNG)
 
-## TO DO ou pas compris
-- le clonnage en SSH ? a quoi sert la registration à quelle moment la clé public est utilisée, à quel moment la clé privé est demandée par git ?
+## Cloner un repos GCP mirroir de GitHub
+Ne pose pas de diffilculté à mettre en place. Mais finalement n'offre que peut d'avantage puisque qu'il n'est pas possiblede commiter sur le repo mirroir sous GCP.
+Le message lors du git push n'est pas trés explicite.
 
-- tests réalisés : aprés avoir registré une clé publique dans Cloud source ripositorie la commande ce clonne done ceci :
+```Shell
+dlambert_family@cloudshell:~/github_dominique-lambert-gcp-perso_mysmallcompany (data-proc-test-dla)$ git push
+remote: PERMISSION_DENIED: The caller does not have permission
+remote: [type.googleapis.com/google.rpc.LocalizedMessage]
+remote: locale: "en-US"
+remote: message: "The remote repository is a read-only mirror of https://github.com/Dominique-Lambert-GCP-Perso/mysmallcompany.\nTo update, please push there."
+remote:
+remote: [type.googleapis.com/google.rpc.RequestInfo]
+remote: request_id: "d8e94ba5845c46ffb207c27388ab7774"
+fatal: unable to access 'https://source.developers.google.com/p/data-proc-test-dla/r/github_dominique-lambert-gcp-perso_mysmallcompany/': The requested URL returned error: 403
+```
+
+## TO DO ou pas compris
+- le clonnage en SSH ? (ne fonctionne qui si le poste client est accédé en SSH, ou sous linux)
 
 ```Shell
 Utilisateur@DESKTOP-4G169MH MINGW32 ~/Documents
