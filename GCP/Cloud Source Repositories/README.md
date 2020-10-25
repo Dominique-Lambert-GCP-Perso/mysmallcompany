@@ -6,7 +6,7 @@ https://cloud.google.com/source-repositories/docs/cloning-repositories#clone_usi
 
 Avant de réaliser le git clone classqiue sur son poste il faut configurer git pour qu'il utilie le cookie d'authentification
 
-![](./Cloud%20Source%20Repositories/Manually%20generate%20credential%20to%20git.PNG) 
+![](https://github.com/Dominique-Lambert-GCP-Perso/mysmallcompany/blob/master/GCP/Cloud%20Source%20Repositories/Manually%20generate%20credential%20to%20git.PNG) 
 
 
 ## 
