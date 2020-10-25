@@ -17,8 +17,8 @@ Avant de réaliser le git clone classique sur son poste il faut configurer git p
 ![](https://github.com/Dominique-Lambert-GCP-Perso/mysmallcompany/blob/master/GCP/Cloud%20Source%20Repositories/Git%20Credentials.PNG)
 
 ## Cloner un repos GCP mirroir de GitHub
-Ne pose pas de diffilculté à mettre en place. Mais finalement n'offre que peut d'avantage puisque qu'il n'est pas possiblede commiter sur le repo mirroir sous GCP.
-Le message lors du git push n'est pas trés explicite.
+Ne pose pas de diffilculté à mettre en place. Mais finalement n'offre que peu d'avantage puisque qu'il n'est pas possiblede commiter sur le repo mirroir sous GCP.
+Le message lors du git push (depuis le repos GCP) n'est pas trés explicite.
 
 ```Shell
 dlambert_family@cloudshell:~/github_dominique-lambert-gcp-perso_mysmallcompany (data-proc-test-dla)$ git push
