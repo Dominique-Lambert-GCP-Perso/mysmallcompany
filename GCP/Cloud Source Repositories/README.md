@@ -16,7 +16,5 @@ Avant de réaliser le git clone classique sur son poste il faut configurer git p
 
 ![](https://github.com/Dominique-Lambert-GCP-Perso/mysmallcompany/blob/master/GCP/Cloud%20Source%20Repositories/Git%20Credentials.PNG)
 
-## 
-```Shell
-
-```
+## TO DO ou pas compris
+- le clonnage en SSH ? a quoi sert la registration à quelle moment la clé public est utilisée, à quel moment la clé privé est demandée par git ?
