@@ -85,7 +85,7 @@ TODO : lorsque qu'un utilisateur se connecte avec OS Login il semble andoser le 
 https://cloud.google.com/iam/docs/service-accounts?hl=fr
 https://cloud.google.com/iam/docs/impersonating-service-accounts?hl=fr
 
-# exemple de compte de service pour terraform
+# exemple : autoriser Leslie Johnson à usurper le compte de service pour terraform
 
 Récupérer la list des comptes de service
 ```Shell
@@ -99,9 +99,30 @@ Récupérer les permissions associées au compte de service terraform
 ```Shell
 gcloud iam service-accounts get-iam-policy terraform@data-proc-test-dla.iam.gserviceaccount.com --format=json > policy.json
 ```
-
+policy.json reçu
 ```Json
 {
   "etag": "ACAB"
 }
+```
+
+policy.json modifié
+```Json
+{
+  "bindings": [
+    {
+      "members": [
+        "user:leslie.johnson@mysmallcompany.tv"
+      ],
+      "role": "roles/iam.serviceAccountUser"
+    }
+  ],
+  "etag": "BwWylIBicKo=",
+  "version": 1
+}
+```
+
+Mettre à jour les permissions associées au compte de service terraform
+```Shell
+gcloud iam service-accounts get-iam-policy terraform@data-proc-test-dla.iam.gserviceaccount.com --format=json > policy.json
 ```
