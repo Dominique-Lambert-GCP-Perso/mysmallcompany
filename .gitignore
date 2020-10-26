@@ -1,2 +1,5 @@
 GCP/DataFlow/word-count-beam/
-GCP/DataFlow/ML_Beam_and_TensorFlow/molecules
+GCP/DataFlow/ML_Beam_and_TensorFlow/moolecules
+GCP/Terraform/terraform.tfstate
+GCP/Terraform/terraform.tfstate.backup
+GCP/Terraform/.terraform
