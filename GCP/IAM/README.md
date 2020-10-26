@@ -79,3 +79,29 @@ Pour activer OS Login sur la VM la meta donnée enable-oslogin doit être initia
 ```
 
 TODO : lorsque qu'un utilisateur se connecte avec OS Login il semble andoser le compte de service setté au moment de la création de la VM (voir peut-être roles/iam.serviceAccountUser)
+
+## Utilisation d'un compte de service
+# Source
+https://cloud.google.com/iam/docs/service-accounts?hl=fr
+https://cloud.google.com/iam/docs/impersonating-service-accounts?hl=fr
+
+# exemple de compte de service pour terraform
+
+Récupérer la list des comptes de service
+```Shell
+gcloud iam service-accounts list
+DISPLAY NAME                            EMAIL                                                 DISABLED
+terraform                               terraform@data-proc-test-dla.iam.gserviceaccount.com  False
+Compute Engine default service account  336543948613-compute@developer.gserviceaccount.com    False
+```
+
+Récupérer les permissions associées au compte de service terraform
+```Shell
+gcloud iam service-accounts get-iam-policy terraform@data-proc-test-dla.iam.gserviceaccount.com --format=json > policy.json
+```
+
+```Json
+{
+  "etag": "ACAB"
+}
+```
