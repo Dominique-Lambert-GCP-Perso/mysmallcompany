@@ -83,7 +83,10 @@ TODO : lorsque qu'un utilisateur se connecte avec OS Login il semble andoser le 
 ## Utilisation d'un compte de service
 # Source
 https://cloud.google.com/iam/docs/service-accounts?hl=fr
+
 https://cloud.google.com/iam/docs/impersonating-service-accounts?hl=fr
+
+https://cloud.google.com/iam/docs/understanding-roles?hl=fr
 
 # exemple : autoriser Leslie Johnson à usurper le compte de service pour terraform
 
