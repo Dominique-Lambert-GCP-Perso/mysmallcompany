@@ -100,7 +100,7 @@ Compute Engine default service account  336543948613-compute@developer.gservicea
 
 Récupérer les permissions associées au compte de service terraform
 ```Shell
-gcloud iam service-accounts get-iam-policy terraform@data-proc-test-dla.iam.gserviceaccount.com --format=json > policy.json
+gcloud iam service-accounts get-iam-policy terraform@data-proc-test-dla.iam.gserviceaccount.com --format=json > service-accounts.policy.json
 ```
 policy.json reçu
 ```Json
@@ -127,5 +127,5 @@ policy.json modifié
 
 Mettre à jour les permissions associées au compte de service terraform
 ```Shell
-gcloud iam service-accounts get-iam-policy terraform@data-proc-test-dla.iam.gserviceaccount.com --format=json > policy.json
+gcloud iam service-accounts set-iam-policy terraform@data-proc-test-dla.iam.gserviceaccount.com service-accounts.policy.json
 ```
