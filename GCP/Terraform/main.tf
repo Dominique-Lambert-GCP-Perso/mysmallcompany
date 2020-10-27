@@ -3,6 +3,7 @@ provider "google" {
   region  = "europe-west1"
   zone    = "europe-west1-b"
   version = "~> 3.44"
+  credentials = file("/home/leslie_johnson/secrets/data-proc-test-dla-b37293a8c6d0.json")
 }
 
 resource "google_compute_instance" "vm_instance" {
