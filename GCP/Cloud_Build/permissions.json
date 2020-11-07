@@ -1,0 +1,91 @@
+{
+  "bindings": [
+    {
+      "members": [
+        "serviceAccount:336543948613@cloudbuild.gserviceaccount.com"
+      ],
+      "role": "roles/cloudbuild.builds.builder"
+    },
+    {
+      "members": [
+        "serviceAccount:service-336543948613@gcp-sa-cloudbuild.iam.gserviceaccount.com"
+      ],
+      "role": "roles/cloudbuild.serviceAgent"
+    },
+    {
+      "members": [
+        "serviceAccount:service-336543948613@gcf-admin-robot.iam.gserviceaccount.com"
+      ],
+      "role": "roles/cloudfunctions.serviceAgent"
+    },
+    {
+      "members": [
+        "serviceAccount:terraform-169@data-proc-test-dla.iam.gserviceaccount.com",
+        "serviceAccount:terraform@data-proc-test-dla.iam.gserviceaccount.com",
+        "serviceAccount:tutu-728@data-proc-test-dla.iam.gserviceaccount.com"
+      ],
+      "role": "roles/compute.admin"
+    },
+    {
+      "members": [
+        "serviceAccount:service-336543948613@compute-system.iam.gserviceaccount.com"
+      ],
+      "role": "roles/compute.serviceAgent"
+    },
+    {
+      "members": [
+        "serviceAccount:service-336543948613@containerregistry.iam.gserviceaccount.com"
+      ],
+      "role": "roles/containerregistry.ServiceAgent"
+    },
+    {
+      "members": [
+        "serviceAccount:service-336543948613@dataproc-accounts.iam.gserviceaccount.com"
+      ],
+      "role": "roles/dataproc.serviceAgent"
+    },
+    {
+      "members": [
+        "serviceAccount:336543948613-compute@developer.gserviceaccount.com",
+        "serviceAccount:336543948613@cloudservices.gserviceaccount.com",
+        "serviceAccount:data-proc-test-dla@appspot.gserviceaccount.com"
+      ],
+      "role": "roles/editor"
+    },
+    {
+      "members": [
+        "serviceAccount:336543948613@cloudbuild.gserviceaccount.com"
+      ],
+      "role": "roles/iam.serviceAccountUser"
+    },
+    {
+      "members": [
+        "serviceAccount:336543948613-compute@developer.gserviceaccount.com",
+        "serviceAccount:336543948613@cloudservices.gserviceaccount.com",
+        "user:dlambert.family@gmail.com"
+      ],
+      "role": "roles/owner"
+    },
+    {
+      "members": [
+        "serviceAccount:336543948613@cloudbuild.gserviceaccount.com"
+      ],
+      "role": "roles/run.admin"
+    },
+    {
+      "members": [
+        "serviceAccount:service-336543948613@serverless-robot-prod.iam.gserviceaccount.com"
+      ],
+      "role": "roles/run.serviceAgent"
+    },
+    {
+      "members": [
+        "user:bob.smith@mysmallcompany.tv",
+        "user:leslie.johnson@mysmallcompany.tv"
+      ],
+      "role": "roles/viewer"
+    }
+  ],
+  "etag": "BwWzhtkphsQ=",
+  "version": 1
+}
