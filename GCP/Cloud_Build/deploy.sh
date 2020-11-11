@@ -20,3 +20,10 @@ cd build-run
 gcloud builds submit --config cloudbuild.yaml
 
 cd ..
+
+
+# To do next : full automation with trigger on commit
+# gcloud beta builds triggers create cloud-source-repositories \
+# --repo=build-demo \
+# --branch-pattern="^master$" \
+# --build-config=cloud_build/build-run/trigger-build.yaml
