@@ -1,12 +1,12 @@
 # CIS Benchmarks : Exemple d'audit scripté d'une politique sécurité sous GCP
 source : 
-  Benchmark : Google Cloud Computing Platform from https://www.cisecurity.org/cis-benchmarks/
-  Audit tool : https://github.com/GoogleCloudPlatform/inspec-gcp-cis-benchmark
-  Ruby Install : https://linuxize.com/post/how-to-install-ruby-on-centos-7/
+  * Benchmark : Google Cloud Computing Platform from https://www.cisecurity.org/cis-benchmarks/
+  * Audit tool : https://github.com/GoogleCloudPlatform/inspec-gcp-cis-benchmark
+  * Ruby Install : https://linuxize.com/post/how-to-install-ruby-on-centos-7/
 
 ##  Install Ruby
-Les repos Centos ne permettent d'installer qu'un version de ruby obsolètes
-voir "Install Ruby using Rbenv" ([ref 3]) pour installer une version compatible avec la version de Chef nécessaire
+Les repos Centos ne permettent que d'installer une version obsolètesde ruby
+voir "Install Ruby using Rbenv" ([ref 3]) pour installer une version compatible avec la version nécessaire de Chef
 
 ##  Launch CIS Benchmarks
 
