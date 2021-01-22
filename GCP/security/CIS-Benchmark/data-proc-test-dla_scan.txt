@@ -1,0 +1,390 @@
+
+Profile: InSpec GCP CIS 1.1 Benchmark (inspec-gcp-cis-benchmark)
+Version: 1.1.0-25
+Target:  gcp://default
+
+[38;5;9m  ×  cis-gcp-1.1-iam: [IAM] Ensure that corporate login credentials are used (1 failed)[0m
+[38;5;9m     ×  [data-proc-test-dla] [Role:roles/owner] Its member user:dlambert.family@gmail.com is expected to match /@mysmallcompany.tv/
+     expected "user:dlambert.family@gmail.com" to match /@mysmallcompany.tv/
+     Diff:
+     @@ -1 +1 @@
+     -/@mysmallcompany.tv/
+     +"user:dlambert.family@gmail.com"
+[0m
+[38;5;41m     ✔  [data-proc-test-dla] [Role:roles/viewer] Its member group:developers-team-01@mysmallcompany.tv is expected to match /@mysmallcompany.tv/[0m
+[38;5;41m     ✔  [data-proc-test-dla] [Role:roles/viewer] Its member user:bob.smith@mysmallcompany.tv is expected to match /@mysmallcompany.tv/[0m
+[38;5;41m     ✔  [data-proc-test-dla] [Role:roles/viewer] Its member user:leslie.johnson@mysmallcompany.tv is expected to match /@mysmallcompany.tv/[0m
+[38;5;247m  ↺  cis-gcp-1.2-iam: [IAM] Ensure that multi-factor authentication is enabled for all non-service accounts[0m
+[38;5;247m     ↺  This control is not scored[0m
+[38;5;247m  ↺  cis-gcp-1.3-iam: [IAM] Ensure that Security Key Enforcement is enabled for all admin accounts[0m
+[38;5;247m     ↺  This control is not scored[0m
+[38;5;247m  ↺  cis-gcp-1.4-iam: [IAM] Ensure that there are only GCP-managed service account keys for each service account (3 failed) (3 skipped)[0m
+[38;5;9m     ×  [data-proc-test-dla] Service Account: cloud-storage-from-fe@data-proc-test-dla.iam.gserviceaccount.com key_types is expected not to include "USER_MANAGED"
+     expected ["USER_MANAGED", "SYSTEM_MANAGED"] not to include "USER_MANAGED"[0m
+[38;5;9m     ×  [data-proc-test-dla] Service Account: terraform@data-proc-test-dla.iam.gserviceaccount.com key_types is expected not to include "USER_MANAGED"
+     expected ["USER_MANAGED", "USER_MANAGED", "SYSTEM_MANAGED"] not to include "USER_MANAGED"[0m
+[38;5;9m     ×  [data-proc-test-dla] Service Account: terraform-169@data-proc-test-dla.iam.gserviceaccount.com key_types is expected not to include "USER_MANAGED"
+     expected ["USER_MANAGED", "SYSTEM_MANAGED"] not to include "USER_MANAGED"[0m
+[38;5;247m     ↺  [data-proc-test-dla] ServiceAccount [336543948613-compute@developer.gserviceaccount.com] does not have user-managed keys.[0m
+[38;5;247m     ↺  [data-proc-test-dla] ServiceAccount [data-proc-test-dla@appspot.gserviceaccount.com] does not have user-managed keys.[0m
+[38;5;247m     ↺  [data-proc-test-dla] ServiceAccount [tutu-728@data-proc-test-dla.iam.gserviceaccount.com] does not have user-managed keys.[0m
+[38;5;9m  ×  cis-gcp-1.5-iam: [IAM] Ensure that ServiceAccount has no Admin privileges. (3 failed)[0m
+[38;5;9m     ×  [data-proc-test-dla] Admin role [roles/compute.admin] members is expected not to include /@[a-z][a-z0-9|-]{4,28}[a-z].iam.gserviceaccount.com/
+     expected ["serviceAccount:terraform-169@data-proc-test-dla.iam.gserviceaccount.com", "serviceAccount:terraform...-dla.iam.gserviceaccount.com", "serviceAccount:tutu-728@data-proc-test-dla.iam.gserviceaccount.com"] not to include /@[a-z][a-z0-9|-]{4,28}[a-z].iam.gserviceaccount.com/
+     Diff:
+     @@ -1,3 +1,5 @@
+     -[/@[a-z][a-z0-9|-]{4,28}[a-z].iam.gserviceaccount.com/]
+     +["serviceAccount:terraform-169@data-proc-test-dla.iam.gserviceaccount.com",
+     + "serviceAccount:terraform@data-proc-test-dla.iam.gserviceaccount.com",
+     + "serviceAccount:tutu-728@data-proc-test-dla.iam.gserviceaccount.com"]
+[0m
+[38;5;9m     ×  [data-proc-test-dla] Admin role [roles/storage.admin] members is expected not to include /@[a-z][a-z0-9|-]{4,28}[a-z].iam.gserviceaccount.com/
+     expected ["serviceAccount:cloud-storage-from-fe@data-proc-test-dla.iam.gserviceaccount.com"] not to include /@[a-z][a-z0-9|-]{4,28}[a-z].iam.gserviceaccount.com/
+     Diff:
+     @@ -1 +1 @@
+     -[/@[a-z][a-z0-9|-]{4,28}[a-z].iam.gserviceaccount.com/]
+     +["serviceAccount:cloud-storage-from-fe@data-proc-test-dla.iam.gserviceaccount.com"]
+[0m
+[38;5;9m     ×  [data-proc-test-dla] Admin role [roles/storage.objectAdmin] members is expected not to include /@[a-z][a-z0-9|-]{4,28}[a-z].iam.gserviceaccount.com/
+     expected ["serviceAccount:cloud-storage-from-fe@data-proc-test-dla.iam.gserviceaccount.com"] not to include /@[a-z][a-z0-9|-]{4,28}[a-z].iam.gserviceaccount.com/
+     Diff:
+     @@ -1 +1 @@
+     -[/@[a-z][a-z0-9|-]{4,28}[a-z].iam.gserviceaccount.com/]
+     +["serviceAccount:cloud-storage-from-fe@data-proc-test-dla.iam.gserviceaccount.com"]
+[0m
+[38;5;41m     ✔  [data-proc-test-dla] Project Editor Role is expected not to include /@[a-z][a-z0-9|-]{4,28}[a-z].iam.gserviceaccount.com/[0m
+[38;5;41m     ✔  [data-proc-test-dla] Project Owner Role members is expected not to include /@[a-z][a-z0-9|-]{4,28}[a-z].iam.gserviceaccount.com/[0m
+[38;5;41m  ✔  cis-gcp-1.6-iam: [IAM] Ensure that IAM users are not assigned Service Account User role at project level[0m
+[38;5;41m     ✔  [data-proc-test-dla] A project-level binding of ServiceAccountUser is expected to eq nil[0m
+[38;5;247m  ↺  cis-gcp-1.7-iam: [IAM] Ensure user-managed/external keys for service accounts are rotated every 90 days or less (3 skipped)[0m
+[38;5;41m     ✔  [data-proc-test-dla] ServiceAccount Keys for cloud-storage-from-fe@data-proc-test-dla.iam.gserviceaccount.com older than 7776000 seconds is expected not to exist[0m
+[38;5;41m     ✔  [data-proc-test-dla] ServiceAccount Keys for terraform@data-proc-test-dla.iam.gserviceaccount.com older than 7776000 seconds is expected not to exist[0m
+[38;5;41m     ✔  [data-proc-test-dla] ServiceAccount Keys for terraform-169@data-proc-test-dla.iam.gserviceaccount.com older than 7776000 seconds is expected not to exist[0m
+[38;5;247m     ↺  [data-proc-test-dla] ServiceAccount [336543948613-compute@developer.gserviceaccount.com] does not have user-managed keys.[0m
+[38;5;247m     ↺  [data-proc-test-dla] ServiceAccount [data-proc-test-dla@appspot.gserviceaccount.com] does not have user-managed keys.[0m
+[38;5;247m     ↺  [data-proc-test-dla] ServiceAccount [tutu-728@data-proc-test-dla.iam.gserviceaccount.com] does not have user-managed keys.[0m
+[38;5;247m  ↺  cis-gcp-1.8-iam: [IAM] Ensure that Separation of duties is enforced while assigning service account related roles to users[0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain users with roles/serviceAccountAdmin[0m
+[38;5;247m  ↺  cis-gcp-1.9-iam: [IAM] Ensure that Cloud KMS cryptokeys are not anonymously or publicly accessible (30 skipped)[0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [asia-east1][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [asia-east2][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [asia-northeast1][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [asia-northeast2][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [asia-northeast3][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [asia-south1][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [asia-southeast1][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [asia-southeast2][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [australia-southeast1][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [europe-north1][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [europe-west1][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [europe-west2][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [europe-west3][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [europe-west4][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [europe-west6][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [northamerica-northeast1][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [southamerica-east1][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [us-central1][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [us-east1][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [us-east4][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [us-west1][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [us-west2][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [us-west3][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [us-west4][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [global][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [asia][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [europe][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [us][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [eur4][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [nam4][0m
+[38;5;247m  ↺  cis-gcp-1.10-iam: [IAM] Ensure Encryption keys are rotated within a period of 90 days (30 skipped)[0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [asia-east1][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [asia-east2][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [asia-northeast1][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [asia-northeast2][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [asia-northeast3][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [asia-south1][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [asia-southeast1][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [asia-southeast2][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [australia-southeast1][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [europe-north1][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [europe-west1][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [europe-west2][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [europe-west3][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [europe-west4][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [europe-west6][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [northamerica-northeast1][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [southamerica-east1][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [us-central1][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [us-east1][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [us-east4][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [us-west1][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [us-west2][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [us-west3][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [us-west4][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [global][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [asia][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [europe][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [us][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [eur4][0m
+[38;5;247m     ↺  [data-proc-test-dla] does not contain any key rings in [nam4][0m
+[38;5;247m  ↺  cis-gcp-1.11-iam: [IAM] Ensure that Separation of duties is enforced while assigning KMS related roles to users[0m
+[38;5;247m     ↺  [data-proc-test-dla] does not have users with roles/CloudKMSAdmin[0m
+[38;5;247m  ↺  cis-gcp-1.12-iam: [IAM] Ensure API keys are not created for a project[0m
+[38;5;247m     ↺  This control is not scored[0m
+[38;5;247m  ↺  cis-gcp-1.13-iam: [IAM] Ensure API keys are restricted to use by only specified Hosts and Apps[0m
+[38;5;247m     ↺  This control is not scored[0m
+[38;5;247m  ↺  cis-gcp-1.14-iam: [IAM] Ensure API keys are restricted to only APIs that application needs access[0m
+[38;5;247m     ↺  This control is not scored[0m
+[38;5;247m  ↺  cis-gcp-1.15-iam: [IAM] Ensure API keys are rotated every 90 days[0m
+[38;5;247m     ↺  This control is not scored[0m
+[38;5;9m  ×  cis-gcp-2.1-logging: [LOGGING] Ensure that Cloud Audit Logging is configured properly across all services and a
+  ll users from a project  (2 failed)[0m
+[38;5;41m     ✔  Logging Audit Config For data-proc-test-dla is expected not to have default exempted members[0m
+[38;5;9m     ×  Logging Audit Config For data-proc-test-dla default_types is expected to include "DATA_READ"
+     expected [] to include "DATA_READ"[0m
+[38;5;9m     ×  Logging Audit Config For data-proc-test-dla default_types is expected to include "DATA_WRITE"
+     expected [] to include "DATA_WRITE"[0m
+[38;5;9m  ×  cis-gcp-2.2-logging: [LOGGING] Ensure that sinks are configured for all Log entries[0m
+[38;5;9m     ×  [data-proc-test-dla] Project level Log sink with an empty filter is expected to exist
+     expected `0.positive?` to be truthy, got false[0m
+[38;5;9m  ×  cis-gcp-2.3-logging: [LOGGING] Ensure that retention policies on log buckets are configured using Bucket Lock[0m
+[38;5;9m     ×  [data-proc-test-dla] does not have logging sinks configured. is expected not to be empty
+     expected `[].empty?` to be falsey, got true[0m
+[38;5;9m  ×  cis-gcp-2.4-logging: [LOGGING] Ensure log metric filter and alerts exists for Project Ownership assignments/changes[0m
+[38;5;9m     ×  [data-proc-test-dla] Project Ownership changes filter is expected to exist
+     expected google_project_metrics with metric_filter == "resource.type=audited_resource AND (protoPayload.servic...gDeltas.action=\"ADD\" AND protoPayload.serviceData.policyDelta.bindingDeltas.role=\"roles/owner\")" to exist[0m
+[38;5;9m  ×  cis-gcp-2.5-logging: [LOGGING] Ensure log metric filter and alerts exists for Audit Configuration Changes[0m
+[38;5;9m     ×  [data-proc-test-dla] Audit configuration changes filter is expected to exist
+     expected google_project_metrics with metric_filter == "resource.type=audited_resource AND protoPayload.methodName=\"SetIamPolicy\" AND protoPayload.serviceData.policyDelta.auditConfigDeltas:*" to exist[0m
+[38;5;9m  ×  cis-gcp-2.6-logging: [LOGGING] Ensure log metric filter and alerts exists for Custom Role changes[0m
+[38;5;9m     ×  [data-proc-test-dla] Custom Role changes filter is expected to exist
+     expected google_project_metrics with metric_filter == "resource.type=audited_resource AND protoPayload.methodN...me=\"google.iam.admin.v1.DeleteRole\" OR protoPayload.methodName=\"google.iam.admin.v1.UpdateRole\"" to exist[0m
+[38;5;9m  ×  cis-gcp-2.7-logging: [LOGGING] Ensure log metric filter and alerts exists for VPC Network Firewall rule changes[0m
+[38;5;9m     ×  [data-proc-test-dla] VPC FW Rule changes filter is expected to exist
+     expected google_project_metrics with metric_filter == "resource.type=global AND jsonPayload.event_subtype=\"compute.firewalls.patch\" OR jsonPayload.event_subtype=\"compute.firewalls.insert\"" to exist[0m
+[38;5;9m  ×  cis-gcp-2.8-logging: [LOGGING] Ensure log metric filter and alerts exists for VPC network route changes [0m
+[38;5;9m     ×  [data-proc-test-dla] VPC Route changes filter is expected to exist
+     expected google_project_metrics with metric_filter == "resource.type=global AND jsonPayload.event_subtype=\"compute.routes.delete\" OR jsonPayload.event_subtype=\"compute.routes.insert\"" to exist[0m
+[38;5;9m  ×  cis-gcp-2.9-logging: [LOGGING] Ensure log metric filter and alerts exists for VPC network changes [0m
+[38;5;9m     ×  [data-proc-test-dla] VPC Network changes filter is expected to exist
+     expected google_project_metrics with metric_filter == "resource.type=audited_resource AND jsonPayload.event_su...ype=\"compute.networks.removePeering\" OR jsonPayload.event_subtype=\"compute.networks.addPeering\"" to exist[0m
+[38;5;9m  ×  cis-gcp-2.10-logging: [LOGGING] Ensure log metric filter and alerts exists for Cloud Storage IAM permission changes[0m
+[38;5;9m     ×  [data-proc-test-dla] Cloud Storage changes filter is expected to exist
+     expected google_project_metrics with metric_filter == "resource.type=gcs_bucket AND protoPayload.methodName=\"storage.setIamPermissions\"" to exist[0m
+[38;5;9m  ×  cis-gcp-2.11-logging: [LOGGING] Ensure log metric filter and alerts exists for SQL instance configuration changes[0m
+[38;5;9m     ×  [data-proc-test-dla] Cloud SQL changes filter is expected to exist
+     expected google_project_metrics with metric_filter == "resource.type=audited_resource AND protoPayload.methodName=\"cloudsql.instances.update\"" to exist[0m
+[38;5;9m  ×  cis-gcp-3.1-networking: [NETWORKING] Ensure the default network does not exist in a project[0m
+[38;5;9m     ×  [data-proc-test-dla] Subnets network_names is expected not to include "default"
+     expected ["default", "vpc-dataproc"] not to include "default"[0m
+[38;5;41m  ✔  cis-gcp-3.2-networking: [NETWORKING] Ensure legacy networks does not exists for a project[0m
+[38;5;41m     ✔  [data-proc-test-dla] Network [default]  is expected not to be legacy[0m
+[38;5;41m     ✔  [data-proc-test-dla] Network [vpc-dataproc]  is expected not to be legacy[0m
+[38;5;247m  ↺  cis-gcp-3.3-networking: [NETWORKING] Ensure that DNSSEC is enabled for Cloud DNS[0m
+[38;5;247m     ↺  [data-proc-test-dla] does not have DNS Zones with Public visibility.[0m
+[38;5;247m  ↺  cis-gcp-3.4-networking: [NETWORKING] Ensure that RSASHA1 is not used for key-signing key in Cloud DNS DNSSEC[0m
+[38;5;247m     ↺  [data-proc-test-dla] does not have DNS Zones.[0m
+[38;5;247m  ↺  cis-gcp-3.5-networking: [NETWORKING] Ensure that RSASHA1 is not used for zone-signing key in Cloud DNS DNSSEC[0m
+[38;5;247m     ↺  [data-proc-test-dla] does not have DNS Zones.[0m
+[38;5;9m  ×  cis-gcp-3.6-networking: [NETWORKING] Ensure that SSH access is restricted from the internet (2 failed)[0m
+[38;5;41m     ✔  [data-proc-test-dla] default-allow-icmp should not allow SSH from 0.0.0.0/0[0m
+[38;5;41m     ✔  [data-proc-test-dla] default-allow-internal should not allow SSH from 0.0.0.0/0[0m
+[38;5;41m     ✔  [data-proc-test-dla] default-allow-rdp should not allow SSH from 0.0.0.0/0[0m
+[38;5;9m     ×  [data-proc-test-dla] default-allow-ssh should not allow SSH from 0.0.0.0/0
+     
+     expected false
+          got true
+[0m
+[38;5;41m     ✔  [data-proc-test-dla] vpc-dataproc-allow-internal should not allow SSH from 0.0.0.0/0[0m
+[38;5;9m     ×  [data-proc-test-dla] vpc-dataproc-allow-ssh should not allow SSH from 0.0.0.0/0
+     
+     expected false
+          got true
+[0m
+[38;5;9m  ×  cis-gcp-3.7-networking: [NETWORKING] Ensure that RDP access is restricted from the internet (1 failed)[0m
+[38;5;41m     ✔  [data-proc-test-dla] default-allow-icmp Should not allow RDP from 0.0.0.0/0[0m
+[38;5;41m     ✔  [data-proc-test-dla] default-allow-internal Should not allow RDP from 0.0.0.0/0[0m
+[38;5;9m     ×  [data-proc-test-dla] default-allow-rdp Should not allow RDP from 0.0.0.0/0
+     
+     expected false
+          got true
+[0m
+[38;5;41m     ✔  [data-proc-test-dla] default-allow-ssh Should not allow RDP from 0.0.0.0/0[0m
+[38;5;41m     ✔  [data-proc-test-dla] vpc-dataproc-allow-internal Should not allow RDP from 0.0.0.0/0[0m
+[38;5;41m     ✔  [data-proc-test-dla] vpc-dataproc-allow-ssh Should not allow RDP from 0.0.0.0/0[0m
+[38;5;9m  ×  cis-gcp-3.8-networking: [NETWORKING] Ensure VPC Flow logs is enabled for every subnet in VPC Network (25 failed)[0m
+[38;5;9m     ×  [data-proc-test-dla] asia-east1/default should have logging enabled
+     
+     expected true
+          got nil
+[0m
+[38;5;9m     ×  [data-proc-test-dla] asia-east2/default should have logging enabled
+     
+     expected true
+          got nil
+[0m
+[38;5;9m     ×  [data-proc-test-dla] asia-northeast1/default should have logging enabled
+     
+     expected true
+          got nil
+[0m
+[38;5;9m     ×  [data-proc-test-dla] asia-northeast2/default should have logging enabled
+     
+     expected true
+          got nil
+[0m
+[38;5;9m     ×  [data-proc-test-dla] asia-northeast3/default should have logging enabled
+     
+     expected true
+          got nil
+[0m
+[38;5;9m     ×  [data-proc-test-dla] asia-south1/default should have logging enabled
+     
+     expected true
+          got nil
+[0m
+[38;5;9m     ×  [data-proc-test-dla] asia-southeast1/default should have logging enabled
+     
+     expected true
+          got nil
+[0m
+[38;5;9m     ×  [data-proc-test-dla] asia-southeast2/default should have logging enabled
+     
+     expected true
+          got nil
+[0m
+[38;5;9m     ×  [data-proc-test-dla] australia-southeast1/default should have logging enabled
+     
+     expected true
+          got nil
+[0m
+[38;5;9m     ×  [data-proc-test-dla] europe-north1/default should have logging enabled
+     
+     expected true
+          got nil
+[0m
+[38;5;9m     ×  [data-proc-test-dla] europe-west1/default should have logging enabled
+     
+     expected true
+          got nil
+[0m
+[38;5;9m     ×  [data-proc-test-dla] europe-west1/subnet-dataproc should have logging enabled
+     
+     expected true
+          got nil
+[0m
+[38;5;9m     ×  [data-proc-test-dla] europe-west2/default should have logging enabled
+     
+     expected true
+          got nil
+[0m
+[38;5;9m     ×  [data-proc-test-dla] europe-west3/default should have logging enabled
+     
+     expected true
+          got nil
+[0m
+[38;5;9m     ×  [data-proc-test-dla] europe-west4/default should have logging enabled
+     
+     expected true
+          got nil
+[0m
+[38;5;9m     ×  [data-proc-test-dla] europe-west6/default should have logging enabled
+     
+     expected true
+          got nil
+[0m
+[38;5;9m     ×  [data-proc-test-dla] northamerica-northeast1/default should have logging enabled
+     
+     expected true
+          got nil
+[0m
+[38;5;9m     ×  [data-proc-test-dla] southamerica-east1/default should have logging enabled
+     
+     expected true
+          got nil
+[0m
+[38;5;9m     ×  [data-proc-test-dla] us-central1/default should have logging enabled
+     
+     expected true
+          got nil
+[0m
+[38;5;9m     ×  [data-proc-test-dla] us-east1/default should have logging enabled
+     
+     expected true
+          got nil
+[0m
+[38;5;9m     ×  [data-proc-test-dla] us-east4/default should have logging enabled
+     
+     expected true
+          got nil
+[0m
+[38;5;9m     ×  [data-proc-test-dla] us-west1/default should have logging enabled
+     
+     expected true
+          got nil
+[0m
+[38;5;9m     ×  [data-proc-test-dla] us-west2/default should have logging enabled
+     
+     expected true
+          got nil
+[0m
+[38;5;9m     ×  [data-proc-test-dla] us-west3/default should have logging enabled
+     
+     expected true
+          got nil
+[0m
+[38;5;9m     ×  [data-proc-test-dla] us-west4/default should have logging enabled
+     
+     expected true
+          got nil
+[0m
+[38;5;41m  ✔  cis-gcp-4.4-vms: [VMS] Ensure oslogin is enabled for a Project[0m
+[38;5;41m     ✔  [data-proc-test-dla] is expected to have enabled oslogin[0m
+[38;5;41m  ✔  cis-gcp-5.1-storage: [STORAGE] Ensure that Cloud Storage bucket is not anonymously or publicly accessible[0m
+[38;5;41m     ✔  [data-proc-test-dla] GCS Bucket test_bucket_dla, Role: roles/storage.legacyBucketOwner members is expected not to include "allUsers"[0m
+[38;5;41m     ✔  [data-proc-test-dla] GCS Bucket test_bucket_dla, Role: roles/storage.legacyBucketOwner members is expected not to include "allAuthenticatedUsers"[0m
+[38;5;41m     ✔  [data-proc-test-dla] GCS Bucket test_bucket_dla, Role: roles/storage.legacyBucketReader members is expected not to include "allUsers"[0m
+[38;5;41m     ✔  [data-proc-test-dla] GCS Bucket test_bucket_dla, Role: roles/storage.legacyBucketReader members is expected not to include "allAuthenticatedUsers"[0m
+[38;5;41m     ✔  [data-proc-test-dla] GCS Bucket test_bucket_dla_public, Role: roles/storage.legacyBucketOwner members is expected not to include "allUsers"[0m
+[38;5;41m     ✔  [data-proc-test-dla] GCS Bucket test_bucket_dla_public, Role: roles/storage.legacyBucketOwner members is expected not to include "allAuthenticatedUsers"[0m
+[38;5;41m     ✔  [data-proc-test-dla] GCS Bucket test_bucket_dla_public, Role: roles/storage.legacyBucketReader members is expected not to include "allUsers"[0m
+[38;5;41m     ✔  [data-proc-test-dla] GCS Bucket test_bucket_dla_public, Role: roles/storage.legacyBucketReader members is expected not to include "allAuthenticatedUsers"[0m
+[38;5;41m     ✔  [data-proc-test-dla] GCS Bucket test_bucket_dla_public, Role: roles/storage.legacyObjectOwner members is expected not to include "allUsers"[0m
+[38;5;41m     ✔  [data-proc-test-dla] GCS Bucket test_bucket_dla_public, Role: roles/storage.legacyObjectOwner members is expected not to include "allAuthenticatedUsers"[0m
+[38;5;41m     ✔  [data-proc-test-dla] GCS Bucket test_bucket_dla_public, Role: roles/storage.legacyObjectReader members is expected not to include "allUsers"[0m
+[38;5;41m     ✔  [data-proc-test-dla] GCS Bucket test_bucket_dla_public, Role: roles/storage.legacyObjectReader members is expected not to include "allAuthenticatedUsers"[0m
+[38;5;9m  ×  cis-gcp-5.2-storage: [STORAGE] Ensure that Cloud Storage buckets have uniform bucket-level access enabled (1 failed)[0m
+[38;5;9m     ×  [data-proc-test-dla] GCS Bucket test_bucket_dla should have uniform bucket-level access enabled
+     
+     expected true
+          got false
+[0m
+[38;5;41m     ✔  [data-proc-test-dla] GCS Bucket test_bucket_dla_public should have uniform bucket-level access enabled[0m
+[38;5;247m  ↺  cis-gcp-6.1.1-db: [DB] Ensure that MySql database instance does not allow anyone to connect with administrative privileges.[0m
+[38;5;247m     ↺  This control is not scored[0m
+[38;5;247m  ↺  cis-gcp-6.4-db: [DB] Ensure that Cloud SQL database instance requires all incoming connections to use SSL[0m
+[38;5;247m     ↺  [data-proc-test-dla] does not have CloudSQL instances.[0m
+[38;5;247m  ↺  cis-gcp-6.5-db: [DB] Database Server should accept connections only from trusted Network(s)/IP(s) and restrict access from the world[0m
+[38;5;247m     ↺  [data-proc-test-dla] does not have CloudSQL instances.[0m
+[38;5;247m  ↺  cis-gcp-6.6-db: [DB] Ensure that Cloud SQL database instances do not have public IPs[0m
+[38;5;247m     ↺  [data-proc-test-dla] does not have CloudSQL instances.[0m
+[38;5;247m  ↺  cis-gcp-6.7-db: [DB] Ensure that Cloud SQL database instances are configured with automated backups[0m
+[38;5;247m     ↺  [data-proc-test-dla] does not have any CloudSQL instances[0m
+[38;5;247m  ↺  cis-gcp-7.1-storage: [STORAGE] Ensure that BigQuery datasets are not anonymously or publicly accessible[0m
+[38;5;247m     ↺  [data-proc-test-dla] does not have BigQuery Datasets[0m
+
+
+Profile: GCP CIS PCI Helper Resource Pack (inspec-gcp-helpers)
+Version: 1.0.7
+Target:  gcp://default
+
+     No tests executed.
+
+Profile: Google Cloud Platform Resource Pack (inspec-gcp)
+Version: 1.7.0
+Target:  gcp://default
+
+     No tests executed.
+
+Profile Summary: [38;5;41m4 successful controls[0m, [38;5;9m19 control failures[0m, [38;5;247m20 controls skipped[0m
+Test Summary: [38;5;41m35 successful[0m, [38;5;9m49 failures[0m, [38;5;247m83 skipped[0m
