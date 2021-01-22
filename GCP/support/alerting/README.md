@@ -43,7 +43,7 @@ sudo service google-fluentd start
 ```
 
 ## Configuration du Uptime checks via la console
-test de l'arret de service apache => levée d'arte sur l'application mobile
+test de l'arret de service apache => levée d'alerte sur l'application mobile !
 
 ## Configuration via gcloud (en version alpha)
 
@@ -83,6 +83,8 @@ notificationChannels:
 - projects/data-proc-test-dla/notificationChannels/5504648379332005065
 ```
 
+## TODO
+La configuration de l'alerting en "as code" semble assez complexe ... (à compléter)
 
 
 
