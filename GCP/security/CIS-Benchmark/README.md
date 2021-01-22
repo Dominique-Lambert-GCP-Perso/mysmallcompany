@@ -4,6 +4,10 @@ source :
   * Audit tool : https://github.com/GoogleCloudPlatform/inspec-gcp-cis-benchmark
   * Ruby Install : https://linuxize.com/post/how-to-install-ruby-on-centos-7/
 
+prerequisit :
+* Chef : c'est une version free de chef qui a été utilisée pour le test. See https://www.chef.io/end-user-license-agreement/.
+
+
 ##  Install Ruby
 Les repos Centos ne permettent que d'installer une version obsolètesde ruby
 voir "Install Ruby using Rbenv" ([ref 3]) pour installer une version compatible avec la version nécessaire de Chef
