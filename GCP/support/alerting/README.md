@@ -4,7 +4,7 @@ Alerting : https://cloud.google.com/monitoring/alerts
 
 Startup script : https://cloud.google.com/compute/docs/startupscript?_ga=2.149942910.-99729803.1610099568
 
-## Création de la VM, déploiement des agent de logging, installation d'apache
+## Création de la VM, déploiement des agents de logging, installation d'apache
 deploy.sh :
 * Copie du fichier de startup vers le bucket
 * Création de la VM avec lancement du fichier startup.sh au lancement de la VM pour provisionning
@@ -16,7 +16,7 @@ deploy.sh :
       --metadata=startup-script-url=gs://test_bucket_dla/startup.sh  
 ```
 startup.sh :
-* Lancé au démarrage du la VM. Les log se se trouvent dans /var/log/deamon.log
+* Lancé au démarrage du la VM. Les log se trouvent dans /var/log/deamon.log
 
 ```Shell
 # Update the package lists on your instance.
