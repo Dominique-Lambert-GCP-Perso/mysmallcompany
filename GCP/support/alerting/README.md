@@ -4,6 +4,8 @@ Alerting : https://cloud.google.com/monitoring/alerts
 
 Startup script : https://cloud.google.com/compute/docs/startupscript?_ga=2.149942910.-99729803.1610099568
 
+Reading metric data : https://github.com/googleapis/python-monitoring
+
 ## Création de la VM, déploiement des agents de logging, installation d'apache
 deploy.sh :
 * Copie du fichier de startup vers le bucket
