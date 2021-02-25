@@ -43,6 +43,9 @@ sudo service google-fluentd start
 ```
 
 ## Configuration du Uptime checks via la console
+```Shell
+sudo systemctl stop apache2
+```
 test de l'arret de service apache => levée d'alerte sur l'application mobile !
 
 ## Configuration via gcloud (en version alpha)
