@@ -16,3 +16,8 @@ git config --global user.email lambert.eworking@free.fr
 git config --global user.name dlambert-eworking
 git config credential.helper 'store'
 ```
+
+* fichiers de configuration
+```
+git config --list --show-origin
+```
