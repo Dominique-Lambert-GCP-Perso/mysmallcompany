@@ -1,0 +1,30 @@
+---
+combiner: OR
+conditions:
+- conditionThreshold:
+    aggregations:
+    - alignmentPeriod: 1200s
+      crossSeriesReducer: REDUCE_COUNT_FALSE
+      groupByFields:
+      - resource.label.*
+      perSeriesAligner: ALIGN_NEXT_OLDER
+    comparison: COMPARISON_GT
+    duration: 60s
+    filter: metric.type="monitoring.googleapis.com/uptime_check/check_passed" AND
+      metric.label.check_id="my-uptime-check" AND resource.type="gce_instance"
+    thresholdValue: 1.0
+    trigger:
+      count: 1
+  displayName: Failure of uptime check_id my-uptime-check
+  name: projects/data-proc-test-dla/alertPolicies/7394571819462344725/conditions/7394571819462345344
+creationRecord:
+  mutateTime: '2021-01-22T15:33:19.111235366Z'
+  mutatedBy: dlambert.family@gmail.com
+displayName: My Uptime Check uptime failure
+enabled: true
+mutationRecord:
+  mutateTime: '2021-01-22T15:33:19.111235366Z'
+  mutatedBy: dlambert.family@gmail.com
+name: projects/data-proc-test-dla/alertPolicies/7394571819462344725
+notificationChannels:
+- projects/data-proc-test-dla/notificationChannels/5504648379332005065
