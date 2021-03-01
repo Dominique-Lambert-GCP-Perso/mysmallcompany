@@ -21,5 +21,9 @@ gcloud pubsub subscriptions create alerts-sub --topic alerts-tp --topic-project 
 echo "Création du channel de notification"
 gcloud alpha monitoring channels create --display-name="alerts-sub-channel" --type=pubsub --channel-labels=topic=projects/data-proc-test-dla/topics/alerts-tp
 
+echo "Ajout du droit de publier sur le topic piur le compte de service"
+project_id=$(gcloud projects describe data-proc-test-dla --format="value(project_number)")
+gcloud pubsub topics add-iam-policy-binding projects/data-proc-test-dla/topics/alerts-tp --role=roles/pubsub.publisher --member=serviceAccount:service-$project_id@gcp-sa-monitoring-notification.iam.gserviceaccount.com
+
 echo "Fin"
 
