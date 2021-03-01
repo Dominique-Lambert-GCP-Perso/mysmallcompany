@@ -63,8 +63,8 @@ echo "Création du channel de notification"
 gcloud alpha monitoring channels create --display-name="alerts-sub-channel" --type=pubsub --channel-labels=topic=projects/data-proc-test-dla/topics/alerts-tp
 ```
 
-Bizaremment le compte de service serviceAccount:service-$project_id@gcp-sa-monitoring-notification.iam.gserviceaccount.com est créer lors de la créaation du canal de notification
-- ce compte n'est listé nul part
+Le compte de service serviceAccount:service-$project_id@gcp-sa-monitoring-notification.iam.gserviceaccount.com est créer lors de la créaation du canal de notification
+- bizaremment ce compte n'est listé nul part
 - ce compte est modifiable (bind) avec gcloud pubsub topics add-iam-policy-binding
 ```Shell
 echo "Ajout du droit de publier sur le topic piur le compte de service"
