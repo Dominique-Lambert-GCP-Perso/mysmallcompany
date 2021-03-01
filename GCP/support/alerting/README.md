@@ -134,7 +134,7 @@ gcloud pubsub subscriptions pull alerts-sub --format="value(message.data)"
 
 ```
 
-## Reception du message en pull (boucle python)
+## Reception du message en pull avec ack (boucle python)
 ```Shell
 python subscriber.py data-proc-test-dla receive alerts-sub
 ```
