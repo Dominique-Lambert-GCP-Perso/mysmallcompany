@@ -1,0 +1,31 @@
+---
+combiner: OR
+conditions:
+- conditionThreshold:
+    aggregations:
+    - alignmentPeriod: 300s
+      perSeriesAligner: ALIGN_MEAN
+    comparison: COMPARISON_GT
+    duration: 0s
+    filter: metric.type="compute.googleapis.com/instance/cpu/utilization" resource.type="gce_instance"
+      metric.label."instance_name"="lamp-1-vm"
+    thresholdValue: 0.5
+    trigger:
+      count: 1
+  displayName: VM Instance - CPU utilization for lamp-1-vm [MEAN]
+  name: projects/data-proc-test-dla/alertPolicies/6366214052799929181/conditions/6366214052799927366
+creationRecord:
+  mutateTime: '2021-03-01T13:00:15.024050926Z'
+  mutatedBy: dlambert.family@gmail.com
+displayName: CPU Utilisation for lamp-1-VM
+documentation:
+  content: Arrêter la fonction de stress
+  mimeType: text/markdown
+enabled: true
+mutationRecord:
+  mutateTime: '2021-03-01T13:00:15.024050926Z'
+  mutatedBy: dlambert.family@gmail.com
+name: projects/data-proc-test-dla/alertPolicies/6366214052799929181
+notificationChannels:
+- projects/data-proc-test-dla/notificationChannels/2294721681486764582
+- projects/data-proc-test-dla/notificationChannels/6375890976154070727

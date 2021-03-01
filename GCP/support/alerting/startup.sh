@@ -20,3 +20,6 @@ sudo apt-get update
 sudo apt-get install google-fluentd
 sudo apt-get install google-fluentd-catch-all-config-structured
 sudo service google-fluentd start
+
+# Install stress tool
+sudo apt-get install stress
