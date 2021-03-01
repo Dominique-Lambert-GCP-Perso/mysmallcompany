@@ -127,5 +127,16 @@ stress --cpu 1
 ```
 test de l'arret de stress => levée d'alerte sur l'application mobile et PUB Sub!
 
+## Reception du message en pull
+```Shell
+gcloud pubsub subscriptions pull alerts-sub
+gcloud pubsub subscriptions pull alerts-sub --format="value(message.data)"
+
+```
+
+## Reception du message en pull (boucle python)
+```Shell
+python subscriber.py data-proc-test-dla receive alerts-sub
+```
 
 
