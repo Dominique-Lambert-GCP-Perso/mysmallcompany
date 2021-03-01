@@ -46,6 +46,33 @@ sudo service google-fluentd start
 
 ```
 
+## Création de la VM, déploiement des agents de logging, installation d'apache
+
+## Configuration des topics Pub/Sub + Channel de configuration + droits IAM de publication sur le SB 
+
+
+
+```Shell
+echo "Création du topic PUB/SUB : alerts-tp"
+gcloud pubsub topics create alerts-tp
+
+echo "Création d'une subscription"
+gcloud pubsub subscriptions create alerts-sub --topic alerts-tp --topic-project data-proc-test-dla
+
+echo "Création du channel de notification"
+gcloud alpha monitoring channels create --display-name="alerts-sub-channel" --type=pubsub --channel-labels=topic=projects/data-proc-test-dla/topics/alerts-tp
+```
+
+Bizaremment le compte de service serviceAccount:service-$project_id@gcp-sa-monitoring-notification.iam.gserviceaccount.com est créer lors de la créaation du canal de notification
+- ce compte n'est listé nul part
+- ce compte est modifiable (bind) avec gcloud pubsub topics add-iam-policy-binding
+```Shell
+echo "Ajout du droit de publier sur le topic piur le compte de service"
+project_id=$(gcloud projects describe data-proc-test-dla --format="value(project_number)")
+gcloud pubsub topics add-iam-policy-binding projects/data-proc-test-dla/topics/alerts-tp --role=roles/pubsub.publisher --member=serviceAccount:service-$project_id@gcp-sa-monitoring-notification.iam.gserviceaccount.com
+```
+
+
 ## Configuration du Uptime checks via la console
 ```Shell
 sudo systemctl stop apache2
@@ -93,6 +120,12 @@ notificationChannels:
 ## TODO
 La configuration de l'alerting en "as code" semble assez complexe ... (à compléter)
 
+## Configuration d'un alerting de CPU Usage via la console
+```Shell
+sudo apt-get install stress
+stress --cpu 1
+```
+test de l'arret de stress => levée d'alerte sur l'application mobile et PUB Sub!
 
 
 
