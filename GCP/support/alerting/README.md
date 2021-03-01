@@ -8,6 +8,8 @@ Reading metric data : https://github.com/googleapis/python-monitoring
 
 Pub/SUB : https://medium.com/google-cloud/warehousing-cloud-monitoring-alerts-b648e3746d9
 
+https://github.com/googleapis/python-pubsub/blob/master/samples/snippets/subscriber.py
+
 ## Création de la VM, déploiement des agents de logging, installation d'apache
 deploy.sh :
 * Copie du fichier de startup vers le bucket
