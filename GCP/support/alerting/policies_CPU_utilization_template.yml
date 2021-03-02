@@ -1,0 +1,20 @@
+---
+combiner: OR
+conditions:
+- conditionThreshold:
+    aggregations:
+    - alignmentPeriod: 300s
+      perSeriesAligner: ALIGN_MEAN
+    comparison: COMPARISON_GT
+    duration: 0s
+    filter: metric.type="compute.googleapis.com/instance/cpu/utilization" resource.type="gce_instance"
+      metric.label."instance_name"="lamp-1-vm"
+    thresholdValue: 0.5
+    trigger:
+      count: 1
+  displayName: VM Instance - CPU utilization for lamp-1-vm [MEAN]
+displayName: CPU Utilisation for lamp-1-VM
+documentation:
+  content: Arrêter la fonction de stress
+  mimeType: text/markdown
+enabled: true

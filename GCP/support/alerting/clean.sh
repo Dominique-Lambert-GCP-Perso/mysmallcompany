@@ -1,5 +1,9 @@
 #!/bin/bash
 
+policie_name=$(gcloud alpha monitoring policies list --filter="displayName: CPU Utilisation for lamp-1-VM" --format="value(name)")
+echo "Delete policie : name ($policie_name) "
+gcloud alpha monitoring policies delete $policie_name
+
 pubsub_channel_name=$(gcloud alpha monitoring channels list --filter='type="pubsub"' --format="value(name)")
 echo "Delete channel de notification : name ($pubsub_channel_name)"
 gcloud alpha monitoring channels delete $pubsub_channel_name
