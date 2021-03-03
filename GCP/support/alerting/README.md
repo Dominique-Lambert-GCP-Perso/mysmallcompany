@@ -119,9 +119,6 @@ notificationChannels:
 - projects/data-proc-test-dla/notificationChannels/5504648379332005065
 ```
 
-## TODO
-La configuration de l'alerting en "as code" semble assez complexe ... (à compléter)
-
 ## Configuration d'un alerting de CPU Usage via la console
 ```Shell
 sudo apt-get install stress
@@ -131,6 +128,7 @@ test de l'arret de stress => levée d'alerte sur l'application mobile et PUB Sub
 
 ## Reception du message en pull
 ```Shell
+gcloud auth activate-service-account --key-file service-account-info.json
 gcloud pubsub subscriptions pull alerts-sub
 gcloud pubsub subscriptions pull alerts-sub --format="value(message.data)"
 
