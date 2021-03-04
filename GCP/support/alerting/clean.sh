@@ -1,5 +1,7 @@
 #!/bin/bash
 source param.sh
+CLOUDSDK_CORE_DISABLE_PROMPTS=1
+export CLOUDSDK_CORE_DISABLE_PROMPTS
 
 policie_name=$(gcloud alpha monitoring policies list --project=$project_id --filter="displayName: CPU Utilisation for lamp-1-VM" --format="value(name)")
 if [ "$policie_name" != "" ] 
@@ -15,12 +17,8 @@ then
     gcloud alpha monitoring channels delete $pubsub_channel_name
 fi
 
-alerts_notification_bem_email=$(gcloud iam service-accounts list --project=$project_id --filter="displayName: alerts-notification-bem" --format="value(email)")
-if [ "$alerts_notification_bem_email" != "" ] 
-then
-    echo "Delete service account : name (alerts-notification-bem)"
-    gcloud iam service-accounts delete $alerts_notification_bem_email
-fi
+echo "Delete service account : name (alerts-notification-bem)"
+gcloud iam service-accounts delete $project_sa_alerts_notification_bem
 
 echo "Delete de la subscription PubSub"
 gcloud pubsub subscriptions delete --project=$project_id $pubsub_subscription_name
@@ -32,6 +30,7 @@ echo "delete vm"
 gcloud compute instances delete --project=$project_id lamp-1-vm --zone=europe-west1-b
 
 echo "delete buckets"
+gsutil rm -r gs://$storage_bucket_startup_config
 
 echo "delete FireWall rules, subnet and VPC"
 gcloud compute --project=$project_id firewall-rules delete default-allow-http

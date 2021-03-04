@@ -23,7 +23,6 @@ at https://cloud.google.com/pubsub/docs.
 
 import argparse
 
-
 def list_subscriptions_in_topic(project_id, topic_id):
     """Lists all subscriptions for a given topic."""
     # [START pubsub_list_topic_subscriptions]
@@ -365,7 +364,7 @@ def remove_dead_letter_policy(project_id, topic_id, subscription_id):
     return subscription_after_update
 
 
-def receive_messages(project_id, subscription_id, timeout=None):
+def receive_messages(project_id, sa_json_path, subscription_id, timeout=None):
     """Receives messages from a pull subscription."""
     # [START pubsub_subscriber_async_pull]
     # [START pubsub_quickstart_subscriber]
@@ -381,7 +380,7 @@ def receive_messages(project_id, subscription_id, timeout=None):
     import json
     from google.auth import jwt
 
-    service_account_info = json.load(open("service-account-info.json"))
+    service_account_info = json.load(open(sa_json_path))
     audience = "https://pubsub.googleapis.com/google.pubsub.v1.Subscriber"
 
     credentials = jwt.Credentials.from_service_account_info(
@@ -672,72 +671,10 @@ if __name__ == "__main__":
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument("project_id", help="Your Google Cloud project ID")
+    parser.add_argument("sa_json_path", help="Service account json file path")
 
     subparsers = parser.add_subparsers(dest="command")
-    list_in_topic_parser = subparsers.add_parser(
-        "list-in-topic", help=list_subscriptions_in_topic.__doc__
-    )
-    list_in_topic_parser.add_argument("topic_id")
-
-    list_in_project_parser = subparsers.add_parser(
-        "list-in-project", help=list_subscriptions_in_project.__doc__
-    )
-
-    create_parser = subparsers.add_parser("create", help=create_subscription.__doc__)
-    create_parser.add_argument("topic_id")
-    create_parser.add_argument("subscription_id")
-
-    create_with_dead_letter_policy_parser = subparsers.add_parser(
-        "create-with-dead-letter-policy",
-        help=create_subscription_with_dead_letter_topic.__doc__,
-    )
-    create_with_dead_letter_policy_parser.add_argument("topic_id")
-    create_with_dead_letter_policy_parser.add_argument("subscription_id")
-    create_with_dead_letter_policy_parser.add_argument("dead_letter_topic_id")
-    create_with_dead_letter_policy_parser.add_argument(
-        "max_delivery_attempts", type=int, nargs="?", default=5
-    )
-
-    create_push_parser = subparsers.add_parser(
-        "create-push", help=create_push_subscription.__doc__
-    )
-    create_push_parser.add_argument("topic_id")
-    create_push_parser.add_argument("subscription_id")
-    create_push_parser.add_argument("endpoint")
-
-    create_subscription_with_ordering_parser = subparsers.add_parser(
-        "create-with-ordering", help=create_subscription_with_ordering.__doc__
-    )
-    create_subscription_with_ordering_parser.add_argument("topic_id")
-    create_subscription_with_ordering_parser.add_argument("subscription_id")
-
-    delete_parser = subparsers.add_parser("delete", help=delete_subscription.__doc__)
-    delete_parser.add_argument("subscription_id")
-
-    update_push_parser = subparsers.add_parser(
-        "update-push", help=update_push_subscription.__doc__
-    )
-    update_push_parser.add_argument("topic_id")
-    update_push_parser.add_argument("subscription_id")
-    update_push_parser.add_argument("endpoint")
-
-    update_dead_letter_policy_parser = subparsers.add_parser(
-        "update-dead-letter-policy",
-        help=update_subscription_with_dead_letter_policy.__doc__,
-    )
-    update_dead_letter_policy_parser.add_argument("topic_id")
-    update_dead_letter_policy_parser.add_argument("subscription_id")
-    update_dead_letter_policy_parser.add_argument("dead_letter_topic_id")
-    update_dead_letter_policy_parser.add_argument(
-        "max_delivery_attempts", type=int, nargs="?", default=5
-    )
-
-    remove_dead_letter_policy_parser = subparsers.add_parser(
-        "remove-dead-letter-policy", help=remove_dead_letter_policy.__doc__
-    )
-    remove_dead_letter_policy_parser.add_argument("topic_id")
-    remove_dead_letter_policy_parser.add_argument("subscription_id")
-
+    
     receive_parser = subparsers.add_parser("receive", help=receive_messages.__doc__)
     receive_parser.add_argument("subscription_id")
     receive_parser.add_argument("timeout", default=None, type=float, nargs="?")
@@ -789,46 +726,8 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    if args.command == "list-in-topic":
-        list_subscriptions_in_topic(args.project_id, args.topic_id)
-    elif args.command == "list-in-project":
-        list_subscriptions_in_project(args.project_id)
-    elif args.command == "create":
-        create_subscription(args.project_id, args.topic_id, args.subscription_id)
-    elif args.command == "create-with-dead-letter-policy":
-        create_subscription_with_dead_letter_topic(
-            args.project_id,
-            args.topic_id,
-            args.subscription_id,
-            args.dead_letter_topic_id,
-            args.max_delivery_attempts,
-        )
-    elif args.command == "create-push":
-        create_push_subscription(
-            args.project_id, args.topic_id, args.subscription_id, args.endpoint,
-        )
-    elif args.command == "create-with-ordering":
-        create_subscription_with_ordering(
-            args.project_id, args.topic_id, args.subscription_id
-        )
-    elif args.command == "delete":
-        delete_subscription(args.project_id, args.subscription_id)
-    elif args.command == "update-push":
-        update_push_subscription(
-            args.project_id, args.topic_id, args.subscription_id, args.endpoint,
-        )
-    elif args.command == "update-dead-letter-policy":
-        update_subscription_with_dead_letter_policy(
-            args.project_id,
-            args.topic_id,
-            args.subscription_id,
-            args.dead_letter_topic_id,
-            args.max_delivery_attempts,
-        )
-    elif args.command == "remove-dead-letter-policy":
-        remove_dead_letter_policy(args.project_id, args.topic_id, args.subscription_id)
-    elif args.command == "receive":
-        receive_messages(args.project_id, args.subscription_id, args.timeout)
+    if args.command == "receive":
+        receive_messages(args.project_id, args.sa_json_path, args.subscription_id, args.timeout)
     elif args.command == "receive-custom-attributes":
         receive_messages_with_custom_attributes(
             args.project_id, args.subscription_id, args.timeout

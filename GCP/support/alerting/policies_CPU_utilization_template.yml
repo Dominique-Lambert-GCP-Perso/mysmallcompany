@@ -13,7 +13,6 @@ conditions:
     trigger:
       count: 1
   displayName: VM Instance - CPU utilization for lamp-1-vm [MEAN]
-displayName: CPU Utilisation for lamp-1-VM
 documentation:
   content: Arrêter la fonction de stress
   mimeType: text/markdown
