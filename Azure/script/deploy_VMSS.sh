@@ -31,8 +31,6 @@ for i in `seq 1 1`; do
     --name myvmss03$i \
     --resource-group $rgName \
     --image UbuntuLTS \
-    --admin-username dla \
-    --admin-password Lamdomlamdom+0 \
 	--public-ip-per-vm \
     --instance-count 2 \
     --vnet-name $vnetName \
