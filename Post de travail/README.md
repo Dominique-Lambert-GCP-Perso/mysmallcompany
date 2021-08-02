@@ -12,3 +12,11 @@ https://docs.microsoft.com/fr-fr/windows/wsl/install-win10
 ```Shell
   systeminfo | find "System Type"
 ```
+
+# Register OS
+wsl --import Ubuntu2004 C:\Users\nzkc9106\Documents\Mission\wslDistroStorage\Ubuntu2004 C:\Users\nzkc9106\Documents\Mission\wslDistroStorage\Ubuntu2004\focal-server-cloudimg-amd64-wsl.rootfs.tar.gz --version 2
+
+# Unregister OS
+wsl --unregister Ubuntu2004
+
+https://github.com/microsoft/WSL/issues/5336
