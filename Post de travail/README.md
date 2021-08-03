@@ -20,3 +20,7 @@ wsl --import Ubuntu2004 C:\Users\nzkc9106\Documents\Mission\wslDistroStorage\Ubu
 wsl --unregister Ubuntu2004
 
 https://github.com/microsoft/WSL/issues/5336
+resolv.conf.ko:nameserver 172.17.206.209
+resolv.conf.new:nameserver 10.160.88.89
+resolv.conf.new:nameserver 10.114.80.34
+https://gist.github.com/coltenkrauter/608cfe02319ce60facd76373249b8ca6
