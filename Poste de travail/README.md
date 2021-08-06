@@ -45,3 +45,4 @@ La conversion est en cours. Cette opération peut prendre quelques minutes...
 La conversion est terminée.
 
 ```
+# Installation de "Windows Terminal"
