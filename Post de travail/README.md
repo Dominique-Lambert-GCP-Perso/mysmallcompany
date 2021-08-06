@@ -3,6 +3,8 @@
 ## Source
 https://docs.microsoft.com/fr-fr/windows/wsl/install-win10
 
+https://wiki.ubuntu.com/WSL?_ga=2.226910361.520029537.1628252665-392281212.1627897250
+
 # Version windows
 ```Shell
   winver
@@ -13,14 +15,24 @@ https://docs.microsoft.com/fr-fr/windows/wsl/install-win10
   systeminfo | find "System Type"
 ```
 
-# Register OS
+# Import OS
 wsl --import Ubuntu2004 C:\Users\nzkc9106\Documents\Mission\wslDistroStorage\Ubuntu2004 C:\Users\nzkc9106\Documents\Mission\wslDistroStorage\Ubuntu2004\focal-server-cloudimg-amd64-wsl.rootfs.tar.gz --version 2
 
 # Unregister OS
 wsl --unregister Ubuntu2004
 
-https://github.com/microsoft/WSL/issues/5336
-resolv.conf.ko:nameserver 172.17.206.209
-resolv.conf.new:nameserver 10.160.88.89
-resolv.conf.new:nameserver 10.114.80.34
-https://gist.github.com/coltenkrauter/608cfe02319ce60facd76373249b8ca6
+# ISSUE WSL 2 : Probably do not work with Cisco AnyConnect version 4.10.00093
+Sythomes : 
+ping 8.8.8.8 OK
+
+ping www.google.fr : KO
+
+- Dignostic intéressants : https://github.com/microsoft/WSL/issues/4246#issuecomment-745463949 (script testé dns-sync.sh : https://gist.github.com/matthiassb/9c8162d2564777a70e3ae3cbee7d2e95)
+
+- AnyConnect 4.10.01075 New Features: https://github.com/microsoft/WSL/issues/4277#issuecomment-561649724
+
+
+# Utilisation de WSL 1 (en attendant la correction sur WSL 2)
+```Shell
+  
+```
