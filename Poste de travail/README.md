@@ -23,6 +23,7 @@ wsl --unregister Ubuntu2004
 
 # ISSUE WSL 2 : Probably do not work with Cisco AnyConnect version 4.10.00093
 Sythomes : 
+
 ping 8.8.8.8 OK
 
 ping www.google.fr : KO
