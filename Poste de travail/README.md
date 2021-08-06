@@ -32,7 +32,7 @@ ping www.google.fr : KO
 
 - AnyConnect 4.10.01075 New Features: https://github.com/microsoft/WSL/issues/4277#issuecomment-561649724
 
-==> https://plazza.orange.com/groups/orange-software-experts/blog/2021/04/02/plumbing-with-wsl2-windows-docker
+Solution : voir Plazza
 
 # Utilisation de WSL 1 (en attendant la correction sur WSL 2)
 ```Shell
