@@ -22,7 +22,7 @@ wsl --import Ubuntu2004 C:\Users\nzkc9106\Documents\Mission\wslDistroStorage\Ubu
 wsl --unregister Ubuntu2004
 
 # ISSUE WSL 2 : Probably do not work with Cisco AnyConnect version 4.10.00093
-Sythomes : 
+Symthomes : 
 
 ping 8.8.8.8 OK
 
