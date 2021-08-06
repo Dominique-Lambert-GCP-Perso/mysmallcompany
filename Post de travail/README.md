@@ -35,4 +35,12 @@ ping www.google.fr : KO
 # Utilisation de WSL 1 (en attendant la correction sur WSL 2)
 ```Shell
   
+PS C:\Users\nzkc9106> wsl --list -v
+  NAME                STATE           VERSION
+* Ubuntu2004          Stopped         2
+  Ubuntu2004-novpn    Stopped         2
+PS C:\Users\nzkc9106> wsl --set-version Ubuntu2004 1
+La conversion est en cours. Cette opération peut prendre quelques minutes...
+La conversion est terminée.
+
 ```
